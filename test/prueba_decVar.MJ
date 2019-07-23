@@ -1,0 +1,40 @@
+class prueba2n{
+void ensayo(int campoMetodo1, int campoMetodo2)
+{
+boolean variablev = null;
+int x = -2;
+int l,m,r = s;
+string  r = "hola";
+int x,y = t/e;
+boolean b;
+
+
+string s;
+int x = n*e;
+int  c = n-m;
+	
+}
+}
+class prueba1n{
+  
+string campo1;
+ string campo2;
+
+
+void ensayo(int campoMetodo1, int campoMetodo2)
+{
+boolean variablev = null;
+int x = -2;
+int l,m,r = s;
+string  r = "hola";
+int x,y = t/e;
+boolean b;
+
+
+string s;
+int x = n*e;
+int  c = n-m;
+	
+}
+
+}

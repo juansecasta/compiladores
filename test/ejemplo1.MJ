@@ -1,0 +1,39 @@
+class prueba1n{
+  
+string a;
+ string c;
+
+
+int restar(int n, int m)
+{
+
+c = n-m;
+x = n;
+return c;	
+}
+
+int sumar(int x, int y)
+{ 
+
+s = x + y;
+if (x == y){
+
+return i;
+
+}
+
+ 
+ return new x();
+}
+
+}
+class prueba2n extends prueba1n{
+ int x;
+ string b;
+
+string imprimir(string y)
+ {
+
+ }
+ 
+}

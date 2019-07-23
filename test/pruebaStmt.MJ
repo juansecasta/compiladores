@@ -1,0 +1,23 @@
+class pruebaStmt{
+
+
+void ensayoStmt(int campoMetodo1, int campoMetodo2)
+{
+int x;
+if (p < y)
+{
+
+x = p+y;
+
+}
+
+
+while (x != z)
+{
+ continue;
+}
+
+return x;
+	
+}
+}

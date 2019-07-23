@@ -1,0 +1,3799 @@
+Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    CIENTNUM
+    COMENTMULT
+    COMENTSIMP
+    FLOAT
+    BINARIO
+    TYPE
+
+Grammar
+
+Rule 0     S' -> Programa
+Rule 1     Programa -> ProgramaDecl
+Rule 2     ProgramaDecl -> classDecl ProgramaDecl
+Rule 3     ProgramaDecl -> vacio
+Rule 4     classDecl -> CLASS ID ExtendsOp LLAVEIZ DeclaracionAtributos LLAVEDER
+Rule 5     ExtendsOp -> EXTENDS ID
+Rule 6     ExtendsOp -> vacio
+Rule 7     DeclaracionAtributos -> fieldmethDecl DeclaracionAtributos
+Rule 8     DeclaracionAtributos -> vacio
+Rule 9     fieldmethDecl -> Type ID ListComaID PUNTOCOMA
+Rule 10    ListComaID -> COMA ID ListComaID
+Rule 11    ListComaID -> vacio
+Rule 12    fieldmethDecl -> Type ID PARENIZQ formals PARENDER block
+Rule 13    fieldmethDecl -> VOID ID PARENIZQ formals PARENDER block
+Rule 14    formals -> Type ID ListComaTypeID
+Rule 15    formals -> vacio
+Rule 16    ListComaTypeID -> COMA Type ID ListComaTypeID
+Rule 17    ListComaTypeID -> vacio
+Rule 18    Type -> INT
+Rule 19    Type -> BOOLEAN
+Rule 20    Type -> STRING
+Rule 21    Type -> Type CORCHIZ CORCHDER
+Rule 22    block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER
+Rule 23    lsVarDecl -> Declaracion_Variable lsVarDecl
+Rule 24    lsVarDecl -> vacio
+Rule 25    Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA
+Rule 26    IgualExp -> IGUAL Expresion
+Rule 27    IgualExp -> vacio
+Rule 28    IdAsignExp -> COMA ID IgualExp IdAsignExp
+Rule 29    IdAsignExp -> vacio
+Rule 30    lstmtDecl -> stmt lstmtDecl
+Rule 31    lstmtDecl -> vacio
+Rule 32    stmt -> assign PUNTOCOMA
+Rule 33    stmt -> call PUNTOCOMA
+Rule 34    stmt -> RETURN Expresion PUNTOCOMA
+Rule 35    stmt -> RETURN PUNTOCOMA
+Rule 36    stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt
+Rule 37    stmt -> IF PARENIZQ Expresion PARENDER stmt
+Rule 38    stmt -> WHILE PARENIZQ Expresion PARENDER stmt
+Rule 39    stmt -> BREAK PUNTOCOMA
+Rule 40    stmt -> CONTINUE PUNTOCOMA
+Rule 41    stmt -> block
+Rule 42    assign -> location IGUAL Expresion
+Rule 43    assign -> vacio
+Rule 44    location -> ID
+Rule 45    location -> Expresion PUNTO ID
+Rule 46    location -> Expresion CORCHIZ Expresion CORCHIZ
+Rule 47    call -> method PARENIZQ actuals PARENDER
+Rule 48    call -> method PARENIZQ PARENDER
+Rule 49    method -> ID
+Rule 50    method -> Expresion PUNTO ID
+Rule 51    actuals -> Expresion LsActualesExp
+Rule 52    actuals -> vacio
+Rule 53    LsActualesExp -> COMA Expresion LsActualesExp
+Rule 54    LsActualesExp -> vacio
+Rule 55    Expresion -> location
+Rule 56    Expresion -> call
+Rule 57    Expresion -> THIS
+Rule 58    Expresion -> NEW ID PARENIZQ PARENDER
+Rule 59    Expresion -> NEW Type CORCHIZ Expresion CORCHDER
+Rule 60    Expresion -> Expresion PUNTO LENGTH
+Rule 61    Expresion -> Expresion binary Expresion
+Rule 62    Expresion -> Unary Expresion
+Rule 63    binary -> MAS
+Rule 64    binary -> MENOS
+Rule 65    binary -> MULTI
+Rule 66    binary -> DIVISION
+Rule 67    binary -> MODULO
+Rule 68    binary -> AND
+Rule 69    binary -> OR
+Rule 70    binary -> MENOR
+Rule 71    binary -> MENORIG
+Rule 72    binary -> MAYOR
+Rule 73    binary -> MAYORIG
+Rule 74    binary -> COMPARAR
+Rule 75    binary -> DIFERCOMP
+Rule 76    Unary -> MENOS
+Rule 77    Unary -> DIFER
+Rule 78    Expresion -> Literal
+Rule 79    Literal -> TRUE
+Rule 80    Literal -> CADENA
+Rule 81    Literal -> FALSE
+Rule 82    Literal -> NULL
+Rule 83    Literal -> ENTNUM
+Rule 84    Expresion -> PARENIZQ Expresion PARENDER
+Rule 85    vacio -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 68
+BINARIO              : 
+BOOLEAN              : 19
+BREAK                : 39
+CADENA               : 80
+CIENTNUM             : 
+CLASS                : 4
+COMA                 : 10 16 28 53
+COMENTMULT           : 
+COMENTSIMP           : 
+COMPARAR             : 74
+CONTINUE             : 40
+CORCHDER             : 21 59
+CORCHIZ              : 21 46 46 59
+DIFER                : 77
+DIFERCOMP            : 75
+DIVISION             : 66
+ELSE                 : 36
+ENTNUM               : 83
+EXTENDS              : 5
+FALSE                : 81
+FLOAT                : 
+ID                   : 4 5 9 10 12 13 14 16 25 28 44 45 49 50 58
+IF                   : 36 37
+IGUAL                : 26 42
+INT                  : 18
+LENGTH               : 60
+LLAVEDER             : 4 22
+LLAVEIZ              : 4 22
+MAS                  : 63
+MAYOR                : 72
+MAYORIG              : 73
+MENOR                : 70
+MENORIG              : 71
+MENOS                : 64 76
+MODULO               : 67
+MULTI                : 65
+NEW                  : 58 59
+NULL                 : 82
+OR                   : 69
+PARENDER             : 12 13 36 37 38 47 48 58 84
+PARENIZQ             : 12 13 36 37 38 47 48 58 84
+PUNTO                : 45 50 60
+PUNTOCOMA            : 9 25 32 33 34 35 39 40
+RETURN               : 34 35
+STRING               : 20
+THIS                 : 57
+TRUE                 : 79
+TYPE                 : 
+VOID                 : 13
+WHILE                : 38
+error                : 
+
+Nonterminals, with rules where they appear
+
+DeclaracionAtributos : 4 7
+Declaracion_Variable : 23
+Expresion            : 26 34 36 37 38 42 45 46 46 50 51 53 59 60 61 61 62 84
+ExtendsOp            : 4
+IdAsignExp           : 25 28
+IgualExp             : 25 28
+ListComaID           : 9 10
+ListComaTypeID       : 14 16
+Literal              : 78
+LsActualesExp        : 51 53
+Programa             : 0
+ProgramaDecl         : 1 2
+Type                 : 9 12 14 16 21 25 59
+Unary                : 62
+actuals              : 47
+assign               : 32
+binary               : 61
+block                : 12 13 41
+call                 : 33 56
+classDecl            : 2
+fieldmethDecl        : 7
+formals              : 12 13
+location             : 42 55
+lsVarDecl            : 22 23
+lstmtDecl            : 22 30
+method               : 47 48
+stmt                 : 30 36 36 37 38
+vacio                : 3 6 8 11 15 17 24 27 29 31 43 52 54
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Programa
+    (1) Programa -> . ProgramaDecl
+    (2) ProgramaDecl -> . classDecl ProgramaDecl
+    (3) ProgramaDecl -> . vacio
+    (4) classDecl -> . CLASS ID ExtendsOp LLAVEIZ DeclaracionAtributos LLAVEDER
+    (85) vacio -> .
+
+    CLASS           shift and go to state 4
+    $end            reduce using rule 85 (vacio -> .)
+
+    classDecl                      shift and go to state 1
+    vacio                          shift and go to state 3
+    Programa                       shift and go to state 2
+    ProgramaDecl                   shift and go to state 5
+
+state 1
+
+    (2) ProgramaDecl -> classDecl . ProgramaDecl
+    (2) ProgramaDecl -> . classDecl ProgramaDecl
+    (3) ProgramaDecl -> . vacio
+    (4) classDecl -> . CLASS ID ExtendsOp LLAVEIZ DeclaracionAtributos LLAVEDER
+    (85) vacio -> .
+
+    CLASS           shift and go to state 4
+    $end            reduce using rule 85 (vacio -> .)
+
+    vacio                          shift and go to state 3
+    classDecl                      shift and go to state 1
+    ProgramaDecl                   shift and go to state 6
+
+state 2
+
+    (0) S' -> Programa .
+
+
+
+state 3
+
+    (3) ProgramaDecl -> vacio .
+
+    $end            reduce using rule 3 (ProgramaDecl -> vacio .)
+
+
+state 4
+
+    (4) classDecl -> CLASS . ID ExtendsOp LLAVEIZ DeclaracionAtributos LLAVEDER
+
+    ID              shift and go to state 7
+
+
+state 5
+
+    (1) Programa -> ProgramaDecl .
+
+    $end            reduce using rule 1 (Programa -> ProgramaDecl .)
+
+
+state 6
+
+    (2) ProgramaDecl -> classDecl ProgramaDecl .
+
+    $end            reduce using rule 2 (ProgramaDecl -> classDecl ProgramaDecl .)
+
+
+state 7
+
+    (4) classDecl -> CLASS ID . ExtendsOp LLAVEIZ DeclaracionAtributos LLAVEDER
+    (5) ExtendsOp -> . EXTENDS ID
+    (6) ExtendsOp -> . vacio
+    (85) vacio -> .
+
+    EXTENDS         shift and go to state 8
+    LLAVEIZ         reduce using rule 85 (vacio -> .)
+
+    ExtendsOp                      shift and go to state 9
+    vacio                          shift and go to state 10
+
+state 8
+
+    (5) ExtendsOp -> EXTENDS . ID
+
+    ID              shift and go to state 11
+
+
+state 9
+
+    (4) classDecl -> CLASS ID ExtendsOp . LLAVEIZ DeclaracionAtributos LLAVEDER
+
+    LLAVEIZ         shift and go to state 12
+
+
+state 10
+
+    (6) ExtendsOp -> vacio .
+
+    LLAVEIZ         reduce using rule 6 (ExtendsOp -> vacio .)
+
+
+state 11
+
+    (5) ExtendsOp -> EXTENDS ID .
+
+    LLAVEIZ         reduce using rule 5 (ExtendsOp -> EXTENDS ID .)
+
+
+state 12
+
+    (4) classDecl -> CLASS ID ExtendsOp LLAVEIZ . DeclaracionAtributos LLAVEDER
+    (7) DeclaracionAtributos -> . fieldmethDecl DeclaracionAtributos
+    (8) DeclaracionAtributos -> . vacio
+    (9) fieldmethDecl -> . Type ID ListComaID PUNTOCOMA
+    (12) fieldmethDecl -> . Type ID PARENIZQ formals PARENDER block
+    (13) fieldmethDecl -> . VOID ID PARENIZQ formals PARENDER block
+    (85) vacio -> .
+    (18) Type -> . INT
+    (19) Type -> . BOOLEAN
+    (20) Type -> . STRING
+    (21) Type -> . Type CORCHIZ CORCHDER
+
+    VOID            shift and go to state 16
+    LLAVEDER        reduce using rule 85 (vacio -> .)
+    INT             shift and go to state 15
+    BOOLEAN         shift and go to state 17
+    STRING          shift and go to state 18
+
+    DeclaracionAtributos           shift and go to state 13
+    fieldmethDecl                  shift and go to state 14
+    vacio                          shift and go to state 20
+    Type                           shift and go to state 19
+
+state 13
+
+    (4) classDecl -> CLASS ID ExtendsOp LLAVEIZ DeclaracionAtributos . LLAVEDER
+
+    LLAVEDER        shift and go to state 21
+
+
+state 14
+
+    (7) DeclaracionAtributos -> fieldmethDecl . DeclaracionAtributos
+    (7) DeclaracionAtributos -> . fieldmethDecl DeclaracionAtributos
+    (8) DeclaracionAtributos -> . vacio
+    (9) fieldmethDecl -> . Type ID ListComaID PUNTOCOMA
+    (12) fieldmethDecl -> . Type ID PARENIZQ formals PARENDER block
+    (13) fieldmethDecl -> . VOID ID PARENIZQ formals PARENDER block
+    (85) vacio -> .
+    (18) Type -> . INT
+    (19) Type -> . BOOLEAN
+    (20) Type -> . STRING
+    (21) Type -> . Type CORCHIZ CORCHDER
+
+    VOID            shift and go to state 16
+    LLAVEDER        reduce using rule 85 (vacio -> .)
+    INT             shift and go to state 15
+    BOOLEAN         shift and go to state 17
+    STRING          shift and go to state 18
+
+    DeclaracionAtributos           shift and go to state 22
+    fieldmethDecl                  shift and go to state 14
+    vacio                          shift and go to state 20
+    Type                           shift and go to state 19
+
+state 15
+
+    (18) Type -> INT .
+
+    ID              reduce using rule 18 (Type -> INT .)
+    CORCHIZ         reduce using rule 18 (Type -> INT .)
+
+
+state 16
+
+    (13) fieldmethDecl -> VOID . ID PARENIZQ formals PARENDER block
+
+    ID              shift and go to state 23
+
+
+state 17
+
+    (19) Type -> BOOLEAN .
+
+    ID              reduce using rule 19 (Type -> BOOLEAN .)
+    CORCHIZ         reduce using rule 19 (Type -> BOOLEAN .)
+
+
+state 18
+
+    (20) Type -> STRING .
+
+    ID              reduce using rule 20 (Type -> STRING .)
+    CORCHIZ         reduce using rule 20 (Type -> STRING .)
+
+
+state 19
+
+    (9) fieldmethDecl -> Type . ID ListComaID PUNTOCOMA
+    (12) fieldmethDecl -> Type . ID PARENIZQ formals PARENDER block
+    (21) Type -> Type . CORCHIZ CORCHDER
+
+    ID              shift and go to state 25
+    CORCHIZ         shift and go to state 24
+
+
+state 20
+
+    (8) DeclaracionAtributos -> vacio .
+
+    LLAVEDER        reduce using rule 8 (DeclaracionAtributos -> vacio .)
+
+
+state 21
+
+    (4) classDecl -> CLASS ID ExtendsOp LLAVEIZ DeclaracionAtributos LLAVEDER .
+
+    CLASS           reduce using rule 4 (classDecl -> CLASS ID ExtendsOp LLAVEIZ DeclaracionAtributos LLAVEDER .)
+    $end            reduce using rule 4 (classDecl -> CLASS ID ExtendsOp LLAVEIZ DeclaracionAtributos LLAVEDER .)
+
+
+state 22
+
+    (7) DeclaracionAtributos -> fieldmethDecl DeclaracionAtributos .
+
+    LLAVEDER        reduce using rule 7 (DeclaracionAtributos -> fieldmethDecl DeclaracionAtributos .)
+
+
+state 23
+
+    (13) fieldmethDecl -> VOID ID . PARENIZQ formals PARENDER block
+
+    PARENIZQ        shift and go to state 26
+
+
+state 24
+
+    (21) Type -> Type CORCHIZ . CORCHDER
+
+    CORCHDER        shift and go to state 27
+
+
+state 25
+
+    (9) fieldmethDecl -> Type ID . ListComaID PUNTOCOMA
+    (12) fieldmethDecl -> Type ID . PARENIZQ formals PARENDER block
+    (10) ListComaID -> . COMA ID ListComaID
+    (11) ListComaID -> . vacio
+    (85) vacio -> .
+
+    PARENIZQ        shift and go to state 31
+    COMA            shift and go to state 30
+    PUNTOCOMA       reduce using rule 85 (vacio -> .)
+
+    ListComaID                     shift and go to state 28
+    vacio                          shift and go to state 29
+
+state 26
+
+    (13) fieldmethDecl -> VOID ID PARENIZQ . formals PARENDER block
+    (14) formals -> . Type ID ListComaTypeID
+    (15) formals -> . vacio
+    (18) Type -> . INT
+    (19) Type -> . BOOLEAN
+    (20) Type -> . STRING
+    (21) Type -> . Type CORCHIZ CORCHDER
+    (85) vacio -> .
+
+    INT             shift and go to state 15
+    BOOLEAN         shift and go to state 17
+    STRING          shift and go to state 18
+    PARENDER        reduce using rule 85 (vacio -> .)
+
+    vacio                          shift and go to state 32
+    Type                           shift and go to state 33
+    formals                        shift and go to state 34
+
+state 27
+
+    (21) Type -> Type CORCHIZ CORCHDER .
+
+    ID              reduce using rule 21 (Type -> Type CORCHIZ CORCHDER .)
+    CORCHIZ         reduce using rule 21 (Type -> Type CORCHIZ CORCHDER .)
+
+
+state 28
+
+    (9) fieldmethDecl -> Type ID ListComaID . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 35
+
+
+state 29
+
+    (11) ListComaID -> vacio .
+
+    PUNTOCOMA       reduce using rule 11 (ListComaID -> vacio .)
+
+
+state 30
+
+    (10) ListComaID -> COMA . ID ListComaID
+
+    ID              shift and go to state 36
+
+
+state 31
+
+    (12) fieldmethDecl -> Type ID PARENIZQ . formals PARENDER block
+    (14) formals -> . Type ID ListComaTypeID
+    (15) formals -> . vacio
+    (18) Type -> . INT
+    (19) Type -> . BOOLEAN
+    (20) Type -> . STRING
+    (21) Type -> . Type CORCHIZ CORCHDER
+    (85) vacio -> .
+
+    INT             shift and go to state 15
+    BOOLEAN         shift and go to state 17
+    STRING          shift and go to state 18
+    PARENDER        reduce using rule 85 (vacio -> .)
+
+    vacio                          shift and go to state 32
+    Type                           shift and go to state 33
+    formals                        shift and go to state 37
+
+state 32
+
+    (15) formals -> vacio .
+
+    PARENDER        reduce using rule 15 (formals -> vacio .)
+
+
+state 33
+
+    (14) formals -> Type . ID ListComaTypeID
+    (21) Type -> Type . CORCHIZ CORCHDER
+
+    ID              shift and go to state 38
+    CORCHIZ         shift and go to state 24
+
+
+state 34
+
+    (13) fieldmethDecl -> VOID ID PARENIZQ formals . PARENDER block
+
+    PARENDER        shift and go to state 39
+
+
+state 35
+
+    (9) fieldmethDecl -> Type ID ListComaID PUNTOCOMA .
+
+    VOID            reduce using rule 9 (fieldmethDecl -> Type ID ListComaID PUNTOCOMA .)
+    INT             reduce using rule 9 (fieldmethDecl -> Type ID ListComaID PUNTOCOMA .)
+    BOOLEAN         reduce using rule 9 (fieldmethDecl -> Type ID ListComaID PUNTOCOMA .)
+    STRING          reduce using rule 9 (fieldmethDecl -> Type ID ListComaID PUNTOCOMA .)
+    LLAVEDER        reduce using rule 9 (fieldmethDecl -> Type ID ListComaID PUNTOCOMA .)
+
+
+state 36
+
+    (10) ListComaID -> COMA ID . ListComaID
+    (10) ListComaID -> . COMA ID ListComaID
+    (11) ListComaID -> . vacio
+    (85) vacio -> .
+
+    COMA            shift and go to state 30
+    PUNTOCOMA       reduce using rule 85 (vacio -> .)
+
+    ListComaID                     shift and go to state 40
+    vacio                          shift and go to state 29
+
+state 37
+
+    (12) fieldmethDecl -> Type ID PARENIZQ formals . PARENDER block
+
+    PARENDER        shift and go to state 41
+
+
+state 38
+
+    (14) formals -> Type ID . ListComaTypeID
+    (16) ListComaTypeID -> . COMA Type ID ListComaTypeID
+    (17) ListComaTypeID -> . vacio
+    (85) vacio -> .
+
+    COMA            shift and go to state 42
+    PARENDER        reduce using rule 85 (vacio -> .)
+
+    ListComaTypeID                 shift and go to state 44
+    vacio                          shift and go to state 43
+
+state 39
+
+    (13) fieldmethDecl -> VOID ID PARENIZQ formals PARENDER . block
+    (22) block -> . LLAVEIZ lsVarDecl lstmtDecl LLAVEDER
+
+    LLAVEIZ         shift and go to state 45
+
+    block                          shift and go to state 46
+
+state 40
+
+    (10) ListComaID -> COMA ID ListComaID .
+
+    PUNTOCOMA       reduce using rule 10 (ListComaID -> COMA ID ListComaID .)
+
+
+state 41
+
+    (12) fieldmethDecl -> Type ID PARENIZQ formals PARENDER . block
+    (22) block -> . LLAVEIZ lsVarDecl lstmtDecl LLAVEDER
+
+    LLAVEIZ         shift and go to state 45
+
+    block                          shift and go to state 47
+
+state 42
+
+    (16) ListComaTypeID -> COMA . Type ID ListComaTypeID
+    (18) Type -> . INT
+    (19) Type -> . BOOLEAN
+    (20) Type -> . STRING
+    (21) Type -> . Type CORCHIZ CORCHDER
+
+    INT             shift and go to state 15
+    BOOLEAN         shift and go to state 17
+    STRING          shift and go to state 18
+
+    Type                           shift and go to state 48
+
+state 43
+
+    (17) ListComaTypeID -> vacio .
+
+    PARENDER        reduce using rule 17 (ListComaTypeID -> vacio .)
+
+
+state 44
+
+    (14) formals -> Type ID ListComaTypeID .
+
+    PARENDER        reduce using rule 14 (formals -> Type ID ListComaTypeID .)
+
+
+state 45
+
+    (22) block -> LLAVEIZ . lsVarDecl lstmtDecl LLAVEDER
+    (23) lsVarDecl -> . Declaracion_Variable lsVarDecl
+    (24) lsVarDecl -> . vacio
+    (25) Declaracion_Variable -> . Type ID IgualExp IdAsignExp PUNTOCOMA
+    (85) vacio -> .
+    (18) Type -> . INT
+    (19) Type -> . BOOLEAN
+    (20) Type -> . STRING
+    (21) Type -> . Type CORCHIZ CORCHDER
+
+    RETURN          reduce using rule 85 (vacio -> .)
+    IF              reduce using rule 85 (vacio -> .)
+    WHILE           reduce using rule 85 (vacio -> .)
+    BREAK           reduce using rule 85 (vacio -> .)
+    CONTINUE        reduce using rule 85 (vacio -> .)
+    LLAVEIZ         reduce using rule 85 (vacio -> .)
+    ID              reduce using rule 85 (vacio -> .)
+    THIS            reduce using rule 85 (vacio -> .)
+    NEW             reduce using rule 85 (vacio -> .)
+    PARENIZQ        reduce using rule 85 (vacio -> .)
+    MENOS           reduce using rule 85 (vacio -> .)
+    DIFER           reduce using rule 85 (vacio -> .)
+    TRUE            reduce using rule 85 (vacio -> .)
+    CADENA          reduce using rule 85 (vacio -> .)
+    FALSE           reduce using rule 85 (vacio -> .)
+    NULL            reduce using rule 85 (vacio -> .)
+    ENTNUM          reduce using rule 85 (vacio -> .)
+    LLAVEDER        reduce using rule 85 (vacio -> .)
+    PUNTOCOMA       reduce using rule 85 (vacio -> .)
+    INT             shift and go to state 15
+    BOOLEAN         shift and go to state 17
+    STRING          shift and go to state 18
+
+    Declaracion_Variable           shift and go to state 49
+    vacio                          shift and go to state 50
+    lsVarDecl                      shift and go to state 51
+    Type                           shift and go to state 52
+
+state 46
+
+    (13) fieldmethDecl -> VOID ID PARENIZQ formals PARENDER block .
+
+    VOID            reduce using rule 13 (fieldmethDecl -> VOID ID PARENIZQ formals PARENDER block .)
+    INT             reduce using rule 13 (fieldmethDecl -> VOID ID PARENIZQ formals PARENDER block .)
+    BOOLEAN         reduce using rule 13 (fieldmethDecl -> VOID ID PARENIZQ formals PARENDER block .)
+    STRING          reduce using rule 13 (fieldmethDecl -> VOID ID PARENIZQ formals PARENDER block .)
+    LLAVEDER        reduce using rule 13 (fieldmethDecl -> VOID ID PARENIZQ formals PARENDER block .)
+
+
+state 47
+
+    (12) fieldmethDecl -> Type ID PARENIZQ formals PARENDER block .
+
+    VOID            reduce using rule 12 (fieldmethDecl -> Type ID PARENIZQ formals PARENDER block .)
+    INT             reduce using rule 12 (fieldmethDecl -> Type ID PARENIZQ formals PARENDER block .)
+    BOOLEAN         reduce using rule 12 (fieldmethDecl -> Type ID PARENIZQ formals PARENDER block .)
+    STRING          reduce using rule 12 (fieldmethDecl -> Type ID PARENIZQ formals PARENDER block .)
+    LLAVEDER        reduce using rule 12 (fieldmethDecl -> Type ID PARENIZQ formals PARENDER block .)
+
+
+state 48
+
+    (16) ListComaTypeID -> COMA Type . ID ListComaTypeID
+    (21) Type -> Type . CORCHIZ CORCHDER
+
+    ID              shift and go to state 53
+    CORCHIZ         shift and go to state 24
+
+
+state 49
+
+    (23) lsVarDecl -> Declaracion_Variable . lsVarDecl
+    (23) lsVarDecl -> . Declaracion_Variable lsVarDecl
+    (24) lsVarDecl -> . vacio
+    (25) Declaracion_Variable -> . Type ID IgualExp IdAsignExp PUNTOCOMA
+    (85) vacio -> .
+    (18) Type -> . INT
+    (19) Type -> . BOOLEAN
+    (20) Type -> . STRING
+    (21) Type -> . Type CORCHIZ CORCHDER
+
+    RETURN          reduce using rule 85 (vacio -> .)
+    IF              reduce using rule 85 (vacio -> .)
+    WHILE           reduce using rule 85 (vacio -> .)
+    BREAK           reduce using rule 85 (vacio -> .)
+    CONTINUE        reduce using rule 85 (vacio -> .)
+    LLAVEIZ         reduce using rule 85 (vacio -> .)
+    ID              reduce using rule 85 (vacio -> .)
+    THIS            reduce using rule 85 (vacio -> .)
+    NEW             reduce using rule 85 (vacio -> .)
+    PARENIZQ        reduce using rule 85 (vacio -> .)
+    MENOS           reduce using rule 85 (vacio -> .)
+    DIFER           reduce using rule 85 (vacio -> .)
+    TRUE            reduce using rule 85 (vacio -> .)
+    CADENA          reduce using rule 85 (vacio -> .)
+    FALSE           reduce using rule 85 (vacio -> .)
+    NULL            reduce using rule 85 (vacio -> .)
+    ENTNUM          reduce using rule 85 (vacio -> .)
+    LLAVEDER        reduce using rule 85 (vacio -> .)
+    PUNTOCOMA       reduce using rule 85 (vacio -> .)
+    INT             shift and go to state 15
+    BOOLEAN         shift and go to state 17
+    STRING          shift and go to state 18
+
+    Declaracion_Variable           shift and go to state 49
+    vacio                          shift and go to state 50
+    lsVarDecl                      shift and go to state 54
+    Type                           shift and go to state 52
+
+state 50
+
+    (24) lsVarDecl -> vacio .
+
+    RETURN          reduce using rule 24 (lsVarDecl -> vacio .)
+    IF              reduce using rule 24 (lsVarDecl -> vacio .)
+    WHILE           reduce using rule 24 (lsVarDecl -> vacio .)
+    BREAK           reduce using rule 24 (lsVarDecl -> vacio .)
+    CONTINUE        reduce using rule 24 (lsVarDecl -> vacio .)
+    LLAVEIZ         reduce using rule 24 (lsVarDecl -> vacio .)
+    ID              reduce using rule 24 (lsVarDecl -> vacio .)
+    THIS            reduce using rule 24 (lsVarDecl -> vacio .)
+    NEW             reduce using rule 24 (lsVarDecl -> vacio .)
+    PARENIZQ        reduce using rule 24 (lsVarDecl -> vacio .)
+    MENOS           reduce using rule 24 (lsVarDecl -> vacio .)
+    DIFER           reduce using rule 24 (lsVarDecl -> vacio .)
+    TRUE            reduce using rule 24 (lsVarDecl -> vacio .)
+    CADENA          reduce using rule 24 (lsVarDecl -> vacio .)
+    FALSE           reduce using rule 24 (lsVarDecl -> vacio .)
+    NULL            reduce using rule 24 (lsVarDecl -> vacio .)
+    ENTNUM          reduce using rule 24 (lsVarDecl -> vacio .)
+    LLAVEDER        reduce using rule 24 (lsVarDecl -> vacio .)
+    PUNTOCOMA       reduce using rule 24 (lsVarDecl -> vacio .)
+
+
+state 51
+
+    (22) block -> LLAVEIZ lsVarDecl . lstmtDecl LLAVEDER
+    (30) lstmtDecl -> . stmt lstmtDecl
+    (31) lstmtDecl -> . vacio
+    (32) stmt -> . assign PUNTOCOMA
+    (33) stmt -> . call PUNTOCOMA
+    (34) stmt -> . RETURN Expresion PUNTOCOMA
+    (35) stmt -> . RETURN PUNTOCOMA
+    (36) stmt -> . IF PARENIZQ Expresion PARENDER stmt ELSE stmt
+    (37) stmt -> . IF PARENIZQ Expresion PARENDER stmt
+    (38) stmt -> . WHILE PARENIZQ Expresion PARENDER stmt
+    (39) stmt -> . BREAK PUNTOCOMA
+    (40) stmt -> . CONTINUE PUNTOCOMA
+    (41) stmt -> . block
+    (85) vacio -> .
+    (42) assign -> . location IGUAL Expresion
+    (43) assign -> . vacio
+    (47) call -> . method PARENIZQ actuals PARENDER
+    (48) call -> . method PARENIZQ PARENDER
+    (22) block -> . LLAVEIZ lsVarDecl lstmtDecl LLAVEDER
+    (44) location -> . ID
+    (45) location -> . Expresion PUNTO ID
+    (46) location -> . Expresion CORCHIZ Expresion CORCHIZ
+    (49) method -> . ID
+    (50) method -> . Expresion PUNTO ID
+    (55) Expresion -> . location
+    (56) Expresion -> . call
+    (57) Expresion -> . THIS
+    (58) Expresion -> . NEW ID PARENIZQ PARENDER
+    (59) Expresion -> . NEW Type CORCHIZ Expresion CORCHDER
+    (60) Expresion -> . Expresion PUNTO LENGTH
+    (61) Expresion -> . Expresion binary Expresion
+    (62) Expresion -> . Unary Expresion
+    (78) Expresion -> . Literal
+    (84) Expresion -> . PARENIZQ Expresion PARENDER
+    (76) Unary -> . MENOS
+    (77) Unary -> . DIFER
+    (79) Literal -> . TRUE
+    (80) Literal -> . CADENA
+    (81) Literal -> . FALSE
+    (82) Literal -> . NULL
+    (83) Literal -> . ENTNUM
+
+    RETURN          shift and go to state 55
+    IF              shift and go to state 73
+    WHILE           shift and go to state 57
+    BREAK           shift and go to state 78
+    CONTINUE        shift and go to state 79
+    LLAVEDER        reduce using rule 85 (vacio -> .)
+    PUNTOCOMA       reduce using rule 85 (vacio -> .)
+    LLAVEIZ         shift and go to state 45
+    ID              shift and go to state 72
+    THIS            shift and go to state 75
+    NEW             shift and go to state 59
+    PARENIZQ        shift and go to state 67
+    MENOS           shift and go to state 63
+    DIFER           shift and go to state 56
+    TRUE            shift and go to state 61
+    CADENA          shift and go to state 62
+    FALSE           shift and go to state 74
+    NULL            shift and go to state 60
+    ENTNUM          shift and go to state 71
+
+    Expresion                      shift and go to state 68
+    Literal                        shift and go to state 76
+    stmt                           shift and go to state 69
+    vacio                          shift and go to state 77
+    Unary                          shift and go to state 58
+    method                         shift and go to state 66
+    call                           shift and go to state 64
+    location                       shift and go to state 65
+    lstmtDecl                      shift and go to state 70
+    assign                         shift and go to state 80
+    block                          shift and go to state 81
+
+state 52
+
+    (25) Declaracion_Variable -> Type . ID IgualExp IdAsignExp PUNTOCOMA
+    (21) Type -> Type . CORCHIZ CORCHDER
+
+    ID              shift and go to state 82
+    CORCHIZ         shift and go to state 24
+
+
+state 53
+
+    (16) ListComaTypeID -> COMA Type ID . ListComaTypeID
+    (16) ListComaTypeID -> . COMA Type ID ListComaTypeID
+    (17) ListComaTypeID -> . vacio
+    (85) vacio -> .
+
+    COMA            shift and go to state 42
+    PARENDER        reduce using rule 85 (vacio -> .)
+
+    ListComaTypeID                 shift and go to state 83
+    vacio                          shift and go to state 43
+
+state 54
+
+    (23) lsVarDecl -> Declaracion_Variable lsVarDecl .
+
+    RETURN          reduce using rule 23 (lsVarDecl -> Declaracion_Variable lsVarDecl .)
+    IF              reduce using rule 23 (lsVarDecl -> Declaracion_Variable lsVarDecl .)
+    WHILE           reduce using rule 23 (lsVarDecl -> Declaracion_Variable lsVarDecl .)
+    BREAK           reduce using rule 23 (lsVarDecl -> Declaracion_Variable lsVarDecl .)
+    CONTINUE        reduce using rule 23 (lsVarDecl -> Declaracion_Variable lsVarDecl .)
+    LLAVEIZ         reduce using rule 23 (lsVarDecl -> Declaracion_Variable lsVarDecl .)
+    ID              reduce using rule 23 (lsVarDecl -> Declaracion_Variable lsVarDecl .)
+    THIS            reduce using rule 23 (lsVarDecl -> Declaracion_Variable lsVarDecl .)
+    NEW             reduce using rule 23 (lsVarDecl -> Declaracion_Variable lsVarDecl .)
+    PARENIZQ        reduce using rule 23 (lsVarDecl -> Declaracion_Variable lsVarDecl .)
+    MENOS           reduce using rule 23 (lsVarDecl -> Declaracion_Variable lsVarDecl .)
+    DIFER           reduce using rule 23 (lsVarDecl -> Declaracion_Variable lsVarDecl .)
+    TRUE            reduce using rule 23 (lsVarDecl -> Declaracion_Variable lsVarDecl .)
+    CADENA          reduce using rule 23 (lsVarDecl -> Declaracion_Variable lsVarDecl .)
+    FALSE           reduce using rule 23 (lsVarDecl -> Declaracion_Variable lsVarDecl .)
+    NULL            reduce using rule 23 (lsVarDecl -> Declaracion_Variable lsVarDecl .)
+    ENTNUM          reduce using rule 23 (lsVarDecl -> Declaracion_Variable lsVarDecl .)
+    LLAVEDER        reduce using rule 23 (lsVarDecl -> Declaracion_Variable lsVarDecl .)
+    PUNTOCOMA       reduce using rule 23 (lsVarDecl -> Declaracion_Variable lsVarDecl .)
+
+
+state 55
+
+    (34) stmt -> RETURN . Expresion PUNTOCOMA
+    (35) stmt -> RETURN . PUNTOCOMA
+    (55) Expresion -> . location
+    (56) Expresion -> . call
+    (57) Expresion -> . THIS
+    (58) Expresion -> . NEW ID PARENIZQ PARENDER
+    (59) Expresion -> . NEW Type CORCHIZ Expresion CORCHDER
+    (60) Expresion -> . Expresion PUNTO LENGTH
+    (61) Expresion -> . Expresion binary Expresion
+    (62) Expresion -> . Unary Expresion
+    (78) Expresion -> . Literal
+    (84) Expresion -> . PARENIZQ Expresion PARENDER
+    (44) location -> . ID
+    (45) location -> . Expresion PUNTO ID
+    (46) location -> . Expresion CORCHIZ Expresion CORCHIZ
+    (47) call -> . method PARENIZQ actuals PARENDER
+    (48) call -> . method PARENIZQ PARENDER
+    (76) Unary -> . MENOS
+    (77) Unary -> . DIFER
+    (79) Literal -> . TRUE
+    (80) Literal -> . CADENA
+    (81) Literal -> . FALSE
+    (82) Literal -> . NULL
+    (83) Literal -> . ENTNUM
+    (49) method -> . ID
+    (50) method -> . Expresion PUNTO ID
+
+    PUNTOCOMA       shift and go to state 84
+    THIS            shift and go to state 75
+    NEW             shift and go to state 59
+    PARENIZQ        shift and go to state 67
+    ID              shift and go to state 72
+    MENOS           shift and go to state 63
+    DIFER           shift and go to state 56
+    TRUE            shift and go to state 61
+    CADENA          shift and go to state 62
+    FALSE           shift and go to state 74
+    NULL            shift and go to state 60
+    ENTNUM          shift and go to state 71
+
+    Expresion                      shift and go to state 87
+    Unary                          shift and go to state 58
+    Literal                        shift and go to state 76
+    call                           shift and go to state 85
+    location                       shift and go to state 86
+    method                         shift and go to state 66
+
+state 56
+
+    (77) Unary -> DIFER .
+
+    THIS            reduce using rule 77 (Unary -> DIFER .)
+    NEW             reduce using rule 77 (Unary -> DIFER .)
+    PARENIZQ        reduce using rule 77 (Unary -> DIFER .)
+    ID              reduce using rule 77 (Unary -> DIFER .)
+    MENOS           reduce using rule 77 (Unary -> DIFER .)
+    DIFER           reduce using rule 77 (Unary -> DIFER .)
+    TRUE            reduce using rule 77 (Unary -> DIFER .)
+    CADENA          reduce using rule 77 (Unary -> DIFER .)
+    FALSE           reduce using rule 77 (Unary -> DIFER .)
+    NULL            reduce using rule 77 (Unary -> DIFER .)
+    ENTNUM          reduce using rule 77 (Unary -> DIFER .)
+
+
+state 57
+
+    (38) stmt -> WHILE . PARENIZQ Expresion PARENDER stmt
+
+    PARENIZQ        shift and go to state 88
+
+
+state 58
+
+    (62) Expresion -> Unary . Expresion
+    (55) Expresion -> . location
+    (56) Expresion -> . call
+    (57) Expresion -> . THIS
+    (58) Expresion -> . NEW ID PARENIZQ PARENDER
+    (59) Expresion -> . NEW Type CORCHIZ Expresion CORCHDER
+    (60) Expresion -> . Expresion PUNTO LENGTH
+    (61) Expresion -> . Expresion binary Expresion
+    (62) Expresion -> . Unary Expresion
+    (78) Expresion -> . Literal
+    (84) Expresion -> . PARENIZQ Expresion PARENDER
+    (44) location -> . ID
+    (45) location -> . Expresion PUNTO ID
+    (46) location -> . Expresion CORCHIZ Expresion CORCHIZ
+    (47) call -> . method PARENIZQ actuals PARENDER
+    (48) call -> . method PARENIZQ PARENDER
+    (76) Unary -> . MENOS
+    (77) Unary -> . DIFER
+    (79) Literal -> . TRUE
+    (80) Literal -> . CADENA
+    (81) Literal -> . FALSE
+    (82) Literal -> . NULL
+    (83) Literal -> . ENTNUM
+    (49) method -> . ID
+    (50) method -> . Expresion PUNTO ID
+
+    THIS            shift and go to state 75
+    NEW             shift and go to state 59
+    PARENIZQ        shift and go to state 67
+    ID              shift and go to state 72
+    MENOS           shift and go to state 63
+    DIFER           shift and go to state 56
+    TRUE            shift and go to state 61
+    CADENA          shift and go to state 62
+    FALSE           shift and go to state 74
+    NULL            shift and go to state 60
+    ENTNUM          shift and go to state 71
+
+    Expresion                      shift and go to state 89
+    Unary                          shift and go to state 58
+    Literal                        shift and go to state 76
+    call                           shift and go to state 85
+    location                       shift and go to state 86
+    method                         shift and go to state 66
+
+state 59
+
+    (58) Expresion -> NEW . ID PARENIZQ PARENDER
+    (59) Expresion -> NEW . Type CORCHIZ Expresion CORCHDER
+    (18) Type -> . INT
+    (19) Type -> . BOOLEAN
+    (20) Type -> . STRING
+    (21) Type -> . Type CORCHIZ CORCHDER
+
+    ID              shift and go to state 91
+    INT             shift and go to state 15
+    BOOLEAN         shift and go to state 17
+    STRING          shift and go to state 18
+
+    Type                           shift and go to state 90
+
+state 60
+
+    (82) Literal -> NULL .
+
+    CORCHIZ         reduce using rule 82 (Literal -> NULL .)
+    PUNTO           reduce using rule 82 (Literal -> NULL .)
+    MAS             reduce using rule 82 (Literal -> NULL .)
+    MENOS           reduce using rule 82 (Literal -> NULL .)
+    MULTI           reduce using rule 82 (Literal -> NULL .)
+    DIVISION        reduce using rule 82 (Literal -> NULL .)
+    MODULO          reduce using rule 82 (Literal -> NULL .)
+    AND             reduce using rule 82 (Literal -> NULL .)
+    OR              reduce using rule 82 (Literal -> NULL .)
+    MENOR           reduce using rule 82 (Literal -> NULL .)
+    MENORIG         reduce using rule 82 (Literal -> NULL .)
+    MAYOR           reduce using rule 82 (Literal -> NULL .)
+    MAYORIG         reduce using rule 82 (Literal -> NULL .)
+    COMPARAR        reduce using rule 82 (Literal -> NULL .)
+    DIFERCOMP       reduce using rule 82 (Literal -> NULL .)
+    COMA            reduce using rule 82 (Literal -> NULL .)
+    PARENDER        reduce using rule 82 (Literal -> NULL .)
+    PUNTOCOMA       reduce using rule 82 (Literal -> NULL .)
+    CORCHDER        reduce using rule 82 (Literal -> NULL .)
+
+
+state 61
+
+    (79) Literal -> TRUE .
+
+    CORCHIZ         reduce using rule 79 (Literal -> TRUE .)
+    PUNTO           reduce using rule 79 (Literal -> TRUE .)
+    MAS             reduce using rule 79 (Literal -> TRUE .)
+    MENOS           reduce using rule 79 (Literal -> TRUE .)
+    MULTI           reduce using rule 79 (Literal -> TRUE .)
+    DIVISION        reduce using rule 79 (Literal -> TRUE .)
+    MODULO          reduce using rule 79 (Literal -> TRUE .)
+    AND             reduce using rule 79 (Literal -> TRUE .)
+    OR              reduce using rule 79 (Literal -> TRUE .)
+    MENOR           reduce using rule 79 (Literal -> TRUE .)
+    MENORIG         reduce using rule 79 (Literal -> TRUE .)
+    MAYOR           reduce using rule 79 (Literal -> TRUE .)
+    MAYORIG         reduce using rule 79 (Literal -> TRUE .)
+    COMPARAR        reduce using rule 79 (Literal -> TRUE .)
+    DIFERCOMP       reduce using rule 79 (Literal -> TRUE .)
+    COMA            reduce using rule 79 (Literal -> TRUE .)
+    PARENDER        reduce using rule 79 (Literal -> TRUE .)
+    PUNTOCOMA       reduce using rule 79 (Literal -> TRUE .)
+    CORCHDER        reduce using rule 79 (Literal -> TRUE .)
+
+
+state 62
+
+    (80) Literal -> CADENA .
+
+    CORCHIZ         reduce using rule 80 (Literal -> CADENA .)
+    PUNTO           reduce using rule 80 (Literal -> CADENA .)
+    MAS             reduce using rule 80 (Literal -> CADENA .)
+    MENOS           reduce using rule 80 (Literal -> CADENA .)
+    MULTI           reduce using rule 80 (Literal -> CADENA .)
+    DIVISION        reduce using rule 80 (Literal -> CADENA .)
+    MODULO          reduce using rule 80 (Literal -> CADENA .)
+    AND             reduce using rule 80 (Literal -> CADENA .)
+    OR              reduce using rule 80 (Literal -> CADENA .)
+    MENOR           reduce using rule 80 (Literal -> CADENA .)
+    MENORIG         reduce using rule 80 (Literal -> CADENA .)
+    MAYOR           reduce using rule 80 (Literal -> CADENA .)
+    MAYORIG         reduce using rule 80 (Literal -> CADENA .)
+    COMPARAR        reduce using rule 80 (Literal -> CADENA .)
+    DIFERCOMP       reduce using rule 80 (Literal -> CADENA .)
+    COMA            reduce using rule 80 (Literal -> CADENA .)
+    PARENDER        reduce using rule 80 (Literal -> CADENA .)
+    PUNTOCOMA       reduce using rule 80 (Literal -> CADENA .)
+    CORCHDER        reduce using rule 80 (Literal -> CADENA .)
+
+
+state 63
+
+    (76) Unary -> MENOS .
+
+    THIS            reduce using rule 76 (Unary -> MENOS .)
+    NEW             reduce using rule 76 (Unary -> MENOS .)
+    PARENIZQ        reduce using rule 76 (Unary -> MENOS .)
+    ID              reduce using rule 76 (Unary -> MENOS .)
+    MENOS           reduce using rule 76 (Unary -> MENOS .)
+    DIFER           reduce using rule 76 (Unary -> MENOS .)
+    TRUE            reduce using rule 76 (Unary -> MENOS .)
+    CADENA          reduce using rule 76 (Unary -> MENOS .)
+    FALSE           reduce using rule 76 (Unary -> MENOS .)
+    NULL            reduce using rule 76 (Unary -> MENOS .)
+    ENTNUM          reduce using rule 76 (Unary -> MENOS .)
+
+
+state 64
+
+    (33) stmt -> call . PUNTOCOMA
+    (56) Expresion -> call .
+
+    PUNTOCOMA       shift and go to state 92
+    PUNTO           reduce using rule 56 (Expresion -> call .)
+    CORCHIZ         reduce using rule 56 (Expresion -> call .)
+    MAS             reduce using rule 56 (Expresion -> call .)
+    MENOS           reduce using rule 56 (Expresion -> call .)
+    MULTI           reduce using rule 56 (Expresion -> call .)
+    DIVISION        reduce using rule 56 (Expresion -> call .)
+    MODULO          reduce using rule 56 (Expresion -> call .)
+    AND             reduce using rule 56 (Expresion -> call .)
+    OR              reduce using rule 56 (Expresion -> call .)
+    MENOR           reduce using rule 56 (Expresion -> call .)
+    MENORIG         reduce using rule 56 (Expresion -> call .)
+    MAYOR           reduce using rule 56 (Expresion -> call .)
+    MAYORIG         reduce using rule 56 (Expresion -> call .)
+    COMPARAR        reduce using rule 56 (Expresion -> call .)
+    DIFERCOMP       reduce using rule 56 (Expresion -> call .)
+
+
+state 65
+
+    (42) assign -> location . IGUAL Expresion
+    (55) Expresion -> location .
+
+    IGUAL           shift and go to state 93
+    PUNTO           reduce using rule 55 (Expresion -> location .)
+    CORCHIZ         reduce using rule 55 (Expresion -> location .)
+    MAS             reduce using rule 55 (Expresion -> location .)
+    MENOS           reduce using rule 55 (Expresion -> location .)
+    MULTI           reduce using rule 55 (Expresion -> location .)
+    DIVISION        reduce using rule 55 (Expresion -> location .)
+    MODULO          reduce using rule 55 (Expresion -> location .)
+    AND             reduce using rule 55 (Expresion -> location .)
+    OR              reduce using rule 55 (Expresion -> location .)
+    MENOR           reduce using rule 55 (Expresion -> location .)
+    MENORIG         reduce using rule 55 (Expresion -> location .)
+    MAYOR           reduce using rule 55 (Expresion -> location .)
+    MAYORIG         reduce using rule 55 (Expresion -> location .)
+    COMPARAR        reduce using rule 55 (Expresion -> location .)
+    DIFERCOMP       reduce using rule 55 (Expresion -> location .)
+
+
+state 66
+
+    (47) call -> method . PARENIZQ actuals PARENDER
+    (48) call -> method . PARENIZQ PARENDER
+
+    PARENIZQ        shift and go to state 94
+
+
+state 67
+
+    (84) Expresion -> PARENIZQ . Expresion PARENDER
+    (55) Expresion -> . location
+    (56) Expresion -> . call
+    (57) Expresion -> . THIS
+    (58) Expresion -> . NEW ID PARENIZQ PARENDER
+    (59) Expresion -> . NEW Type CORCHIZ Expresion CORCHDER
+    (60) Expresion -> . Expresion PUNTO LENGTH
+    (61) Expresion -> . Expresion binary Expresion
+    (62) Expresion -> . Unary Expresion
+    (78) Expresion -> . Literal
+    (84) Expresion -> . PARENIZQ Expresion PARENDER
+    (44) location -> . ID
+    (45) location -> . Expresion PUNTO ID
+    (46) location -> . Expresion CORCHIZ Expresion CORCHIZ
+    (47) call -> . method PARENIZQ actuals PARENDER
+    (48) call -> . method PARENIZQ PARENDER
+    (76) Unary -> . MENOS
+    (77) Unary -> . DIFER
+    (79) Literal -> . TRUE
+    (80) Literal -> . CADENA
+    (81) Literal -> . FALSE
+    (82) Literal -> . NULL
+    (83) Literal -> . ENTNUM
+    (49) method -> . ID
+    (50) method -> . Expresion PUNTO ID
+
+    THIS            shift and go to state 75
+    NEW             shift and go to state 59
+    PARENIZQ        shift and go to state 67
+    ID              shift and go to state 72
+    MENOS           shift and go to state 63
+    DIFER           shift and go to state 56
+    TRUE            shift and go to state 61
+    CADENA          shift and go to state 62
+    FALSE           shift and go to state 74
+    NULL            shift and go to state 60
+    ENTNUM          shift and go to state 71
+
+    Expresion                      shift and go to state 95
+    Unary                          shift and go to state 58
+    Literal                        shift and go to state 76
+    call                           shift and go to state 85
+    location                       shift and go to state 86
+    method                         shift and go to state 66
+
+state 68
+
+    (45) location -> Expresion . PUNTO ID
+    (46) location -> Expresion . CORCHIZ Expresion CORCHIZ
+    (50) method -> Expresion . PUNTO ID
+    (60) Expresion -> Expresion . PUNTO LENGTH
+    (61) Expresion -> Expresion . binary Expresion
+    (63) binary -> . MAS
+    (64) binary -> . MENOS
+    (65) binary -> . MULTI
+    (66) binary -> . DIVISION
+    (67) binary -> . MODULO
+    (68) binary -> . AND
+    (69) binary -> . OR
+    (70) binary -> . MENOR
+    (71) binary -> . MENORIG
+    (72) binary -> . MAYOR
+    (73) binary -> . MAYORIG
+    (74) binary -> . COMPARAR
+    (75) binary -> . DIFERCOMP
+
+    PUNTO           shift and go to state 106
+    CORCHIZ         shift and go to state 98
+    MAS             shift and go to state 97
+    MENOS           shift and go to state 107
+    MULTI           shift and go to state 104
+    DIVISION        shift and go to state 101
+    MODULO          shift and go to state 99
+    AND             shift and go to state 111
+    OR              shift and go to state 105
+    MENOR           shift and go to state 102
+    MENORIG         shift and go to state 109
+    MAYOR           shift and go to state 103
+    MAYORIG         shift and go to state 100
+    COMPARAR        shift and go to state 108
+    DIFERCOMP       shift and go to state 110
+
+    binary                         shift and go to state 96
+
+state 69
+
+    (30) lstmtDecl -> stmt . lstmtDecl
+    (30) lstmtDecl -> . stmt lstmtDecl
+    (31) lstmtDecl -> . vacio
+    (32) stmt -> . assign PUNTOCOMA
+    (33) stmt -> . call PUNTOCOMA
+    (34) stmt -> . RETURN Expresion PUNTOCOMA
+    (35) stmt -> . RETURN PUNTOCOMA
+    (36) stmt -> . IF PARENIZQ Expresion PARENDER stmt ELSE stmt
+    (37) stmt -> . IF PARENIZQ Expresion PARENDER stmt
+    (38) stmt -> . WHILE PARENIZQ Expresion PARENDER stmt
+    (39) stmt -> . BREAK PUNTOCOMA
+    (40) stmt -> . CONTINUE PUNTOCOMA
+    (41) stmt -> . block
+    (85) vacio -> .
+    (42) assign -> . location IGUAL Expresion
+    (43) assign -> . vacio
+    (47) call -> . method PARENIZQ actuals PARENDER
+    (48) call -> . method PARENIZQ PARENDER
+    (22) block -> . LLAVEIZ lsVarDecl lstmtDecl LLAVEDER
+    (44) location -> . ID
+    (45) location -> . Expresion PUNTO ID
+    (46) location -> . Expresion CORCHIZ Expresion CORCHIZ
+    (49) method -> . ID
+    (50) method -> . Expresion PUNTO ID
+    (55) Expresion -> . location
+    (56) Expresion -> . call
+    (57) Expresion -> . THIS
+    (58) Expresion -> . NEW ID PARENIZQ PARENDER
+    (59) Expresion -> . NEW Type CORCHIZ Expresion CORCHDER
+    (60) Expresion -> . Expresion PUNTO LENGTH
+    (61) Expresion -> . Expresion binary Expresion
+    (62) Expresion -> . Unary Expresion
+    (78) Expresion -> . Literal
+    (84) Expresion -> . PARENIZQ Expresion PARENDER
+    (76) Unary -> . MENOS
+    (77) Unary -> . DIFER
+    (79) Literal -> . TRUE
+    (80) Literal -> . CADENA
+    (81) Literal -> . FALSE
+    (82) Literal -> . NULL
+    (83) Literal -> . ENTNUM
+
+    RETURN          shift and go to state 55
+    IF              shift and go to state 73
+    WHILE           shift and go to state 57
+    BREAK           shift and go to state 78
+    CONTINUE        shift and go to state 79
+    LLAVEDER        reduce using rule 85 (vacio -> .)
+    PUNTOCOMA       reduce using rule 85 (vacio -> .)
+    LLAVEIZ         shift and go to state 45
+    ID              shift and go to state 72
+    THIS            shift and go to state 75
+    NEW             shift and go to state 59
+    PARENIZQ        shift and go to state 67
+    MENOS           shift and go to state 63
+    DIFER           shift and go to state 56
+    TRUE            shift and go to state 61
+    CADENA          shift and go to state 62
+    FALSE           shift and go to state 74
+    NULL            shift and go to state 60
+    ENTNUM          shift and go to state 71
+
+    Expresion                      shift and go to state 68
+    Literal                        shift and go to state 76
+    stmt                           shift and go to state 69
+    vacio                          shift and go to state 77
+    Unary                          shift and go to state 58
+    method                         shift and go to state 66
+    call                           shift and go to state 64
+    location                       shift and go to state 65
+    lstmtDecl                      shift and go to state 112
+    assign                         shift and go to state 80
+    block                          shift and go to state 81
+
+state 70
+
+    (22) block -> LLAVEIZ lsVarDecl lstmtDecl . LLAVEDER
+
+    LLAVEDER        shift and go to state 113
+
+
+state 71
+
+    (83) Literal -> ENTNUM .
+
+    CORCHIZ         reduce using rule 83 (Literal -> ENTNUM .)
+    PUNTO           reduce using rule 83 (Literal -> ENTNUM .)
+    MAS             reduce using rule 83 (Literal -> ENTNUM .)
+    MENOS           reduce using rule 83 (Literal -> ENTNUM .)
+    MULTI           reduce using rule 83 (Literal -> ENTNUM .)
+    DIVISION        reduce using rule 83 (Literal -> ENTNUM .)
+    MODULO          reduce using rule 83 (Literal -> ENTNUM .)
+    AND             reduce using rule 83 (Literal -> ENTNUM .)
+    OR              reduce using rule 83 (Literal -> ENTNUM .)
+    MENOR           reduce using rule 83 (Literal -> ENTNUM .)
+    MENORIG         reduce using rule 83 (Literal -> ENTNUM .)
+    MAYOR           reduce using rule 83 (Literal -> ENTNUM .)
+    MAYORIG         reduce using rule 83 (Literal -> ENTNUM .)
+    COMPARAR        reduce using rule 83 (Literal -> ENTNUM .)
+    DIFERCOMP       reduce using rule 83 (Literal -> ENTNUM .)
+    COMA            reduce using rule 83 (Literal -> ENTNUM .)
+    PARENDER        reduce using rule 83 (Literal -> ENTNUM .)
+    PUNTOCOMA       reduce using rule 83 (Literal -> ENTNUM .)
+    CORCHDER        reduce using rule 83 (Literal -> ENTNUM .)
+
+
+state 72
+
+    (44) location -> ID .
+    (49) method -> ID .
+
+    PUNTO           reduce using rule 44 (location -> ID .)
+    CORCHIZ         reduce using rule 44 (location -> ID .)
+    COMA            reduce using rule 44 (location -> ID .)
+    MAS             reduce using rule 44 (location -> ID .)
+    MENOS           reduce using rule 44 (location -> ID .)
+    MULTI           reduce using rule 44 (location -> ID .)
+    DIVISION        reduce using rule 44 (location -> ID .)
+    MODULO          reduce using rule 44 (location -> ID .)
+    AND             reduce using rule 44 (location -> ID .)
+    OR              reduce using rule 44 (location -> ID .)
+    MENOR           reduce using rule 44 (location -> ID .)
+    MENORIG         reduce using rule 44 (location -> ID .)
+    MAYOR           reduce using rule 44 (location -> ID .)
+    MAYORIG         reduce using rule 44 (location -> ID .)
+    COMPARAR        reduce using rule 44 (location -> ID .)
+    DIFERCOMP       reduce using rule 44 (location -> ID .)
+    PARENDER        reduce using rule 44 (location -> ID .)
+    PUNTOCOMA       reduce using rule 44 (location -> ID .)
+    IGUAL           reduce using rule 44 (location -> ID .)
+    CORCHDER        reduce using rule 44 (location -> ID .)
+    PARENIZQ        reduce using rule 49 (method -> ID .)
+
+
+state 73
+
+    (36) stmt -> IF . PARENIZQ Expresion PARENDER stmt ELSE stmt
+    (37) stmt -> IF . PARENIZQ Expresion PARENDER stmt
+
+    PARENIZQ        shift and go to state 114
+
+
+state 74
+
+    (81) Literal -> FALSE .
+
+    CORCHIZ         reduce using rule 81 (Literal -> FALSE .)
+    PUNTO           reduce using rule 81 (Literal -> FALSE .)
+    MAS             reduce using rule 81 (Literal -> FALSE .)
+    MENOS           reduce using rule 81 (Literal -> FALSE .)
+    MULTI           reduce using rule 81 (Literal -> FALSE .)
+    DIVISION        reduce using rule 81 (Literal -> FALSE .)
+    MODULO          reduce using rule 81 (Literal -> FALSE .)
+    AND             reduce using rule 81 (Literal -> FALSE .)
+    OR              reduce using rule 81 (Literal -> FALSE .)
+    MENOR           reduce using rule 81 (Literal -> FALSE .)
+    MENORIG         reduce using rule 81 (Literal -> FALSE .)
+    MAYOR           reduce using rule 81 (Literal -> FALSE .)
+    MAYORIG         reduce using rule 81 (Literal -> FALSE .)
+    COMPARAR        reduce using rule 81 (Literal -> FALSE .)
+    DIFERCOMP       reduce using rule 81 (Literal -> FALSE .)
+    COMA            reduce using rule 81 (Literal -> FALSE .)
+    PARENDER        reduce using rule 81 (Literal -> FALSE .)
+    PUNTOCOMA       reduce using rule 81 (Literal -> FALSE .)
+    CORCHDER        reduce using rule 81 (Literal -> FALSE .)
+
+
+state 75
+
+    (57) Expresion -> THIS .
+
+    PUNTO           reduce using rule 57 (Expresion -> THIS .)
+    CORCHIZ         reduce using rule 57 (Expresion -> THIS .)
+    MAS             reduce using rule 57 (Expresion -> THIS .)
+    MENOS           reduce using rule 57 (Expresion -> THIS .)
+    MULTI           reduce using rule 57 (Expresion -> THIS .)
+    DIVISION        reduce using rule 57 (Expresion -> THIS .)
+    MODULO          reduce using rule 57 (Expresion -> THIS .)
+    AND             reduce using rule 57 (Expresion -> THIS .)
+    OR              reduce using rule 57 (Expresion -> THIS .)
+    MENOR           reduce using rule 57 (Expresion -> THIS .)
+    MENORIG         reduce using rule 57 (Expresion -> THIS .)
+    MAYOR           reduce using rule 57 (Expresion -> THIS .)
+    MAYORIG         reduce using rule 57 (Expresion -> THIS .)
+    COMPARAR        reduce using rule 57 (Expresion -> THIS .)
+    DIFERCOMP       reduce using rule 57 (Expresion -> THIS .)
+    PARENDER        reduce using rule 57 (Expresion -> THIS .)
+    COMA            reduce using rule 57 (Expresion -> THIS .)
+    PUNTOCOMA       reduce using rule 57 (Expresion -> THIS .)
+    CORCHDER        reduce using rule 57 (Expresion -> THIS .)
+
+
+state 76
+
+    (78) Expresion -> Literal .
+
+    PUNTO           reduce using rule 78 (Expresion -> Literal .)
+    CORCHIZ         reduce using rule 78 (Expresion -> Literal .)
+    MAS             reduce using rule 78 (Expresion -> Literal .)
+    MENOS           reduce using rule 78 (Expresion -> Literal .)
+    MULTI           reduce using rule 78 (Expresion -> Literal .)
+    DIVISION        reduce using rule 78 (Expresion -> Literal .)
+    MODULO          reduce using rule 78 (Expresion -> Literal .)
+    AND             reduce using rule 78 (Expresion -> Literal .)
+    OR              reduce using rule 78 (Expresion -> Literal .)
+    MENOR           reduce using rule 78 (Expresion -> Literal .)
+    MENORIG         reduce using rule 78 (Expresion -> Literal .)
+    MAYOR           reduce using rule 78 (Expresion -> Literal .)
+    MAYORIG         reduce using rule 78 (Expresion -> Literal .)
+    COMPARAR        reduce using rule 78 (Expresion -> Literal .)
+    DIFERCOMP       reduce using rule 78 (Expresion -> Literal .)
+    PARENDER        reduce using rule 78 (Expresion -> Literal .)
+    COMA            reduce using rule 78 (Expresion -> Literal .)
+    PUNTOCOMA       reduce using rule 78 (Expresion -> Literal .)
+    CORCHDER        reduce using rule 78 (Expresion -> Literal .)
+
+
+state 77
+
+    (31) lstmtDecl -> vacio .
+    (43) assign -> vacio .
+
+    LLAVEDER        reduce using rule 31 (lstmtDecl -> vacio .)
+    PUNTOCOMA       reduce using rule 43 (assign -> vacio .)
+
+
+state 78
+
+    (39) stmt -> BREAK . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 115
+
+
+state 79
+
+    (40) stmt -> CONTINUE . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 116
+
+
+state 80
+
+    (32) stmt -> assign . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 117
+
+
+state 81
+
+    (41) stmt -> block .
+
+    RETURN          reduce using rule 41 (stmt -> block .)
+    IF              reduce using rule 41 (stmt -> block .)
+    WHILE           reduce using rule 41 (stmt -> block .)
+    BREAK           reduce using rule 41 (stmt -> block .)
+    CONTINUE        reduce using rule 41 (stmt -> block .)
+    LLAVEIZ         reduce using rule 41 (stmt -> block .)
+    ID              reduce using rule 41 (stmt -> block .)
+    THIS            reduce using rule 41 (stmt -> block .)
+    NEW             reduce using rule 41 (stmt -> block .)
+    PARENIZQ        reduce using rule 41 (stmt -> block .)
+    MENOS           reduce using rule 41 (stmt -> block .)
+    DIFER           reduce using rule 41 (stmt -> block .)
+    TRUE            reduce using rule 41 (stmt -> block .)
+    CADENA          reduce using rule 41 (stmt -> block .)
+    FALSE           reduce using rule 41 (stmt -> block .)
+    NULL            reduce using rule 41 (stmt -> block .)
+    ENTNUM          reduce using rule 41 (stmt -> block .)
+    PUNTOCOMA       reduce using rule 41 (stmt -> block .)
+    LLAVEDER        reduce using rule 41 (stmt -> block .)
+    ELSE            reduce using rule 41 (stmt -> block .)
+
+
+state 82
+
+    (25) Declaracion_Variable -> Type ID . IgualExp IdAsignExp PUNTOCOMA
+    (26) IgualExp -> . IGUAL Expresion
+    (27) IgualExp -> . vacio
+    (85) vacio -> .
+
+    IGUAL           shift and go to state 119
+    COMA            reduce using rule 85 (vacio -> .)
+    PUNTOCOMA       reduce using rule 85 (vacio -> .)
+
+    IgualExp                       shift and go to state 118
+    vacio                          shift and go to state 120
+
+state 83
+
+    (16) ListComaTypeID -> COMA Type ID ListComaTypeID .
+
+    PARENDER        reduce using rule 16 (ListComaTypeID -> COMA Type ID ListComaTypeID .)
+
+
+state 84
+
+    (35) stmt -> RETURN PUNTOCOMA .
+
+    RETURN          reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+    IF              reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+    WHILE           reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+    BREAK           reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+    CONTINUE        reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+    LLAVEIZ         reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+    ID              reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+    THIS            reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+    NEW             reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+    PARENIZQ        reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+    MENOS           reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+    DIFER           reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+    TRUE            reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+    CADENA          reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+    FALSE           reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+    NULL            reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+    ENTNUM          reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+    PUNTOCOMA       reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+    LLAVEDER        reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+    ELSE            reduce using rule 35 (stmt -> RETURN PUNTOCOMA .)
+
+
+state 85
+
+    (56) Expresion -> call .
+
+    PARENDER        reduce using rule 56 (Expresion -> call .)
+    PUNTO           reduce using rule 56 (Expresion -> call .)
+    CORCHIZ         reduce using rule 56 (Expresion -> call .)
+    MAS             reduce using rule 56 (Expresion -> call .)
+    MENOS           reduce using rule 56 (Expresion -> call .)
+    MULTI           reduce using rule 56 (Expresion -> call .)
+    DIVISION        reduce using rule 56 (Expresion -> call .)
+    MODULO          reduce using rule 56 (Expresion -> call .)
+    AND             reduce using rule 56 (Expresion -> call .)
+    OR              reduce using rule 56 (Expresion -> call .)
+    MENOR           reduce using rule 56 (Expresion -> call .)
+    MENORIG         reduce using rule 56 (Expresion -> call .)
+    MAYOR           reduce using rule 56 (Expresion -> call .)
+    MAYORIG         reduce using rule 56 (Expresion -> call .)
+    COMPARAR        reduce using rule 56 (Expresion -> call .)
+    DIFERCOMP       reduce using rule 56 (Expresion -> call .)
+    COMA            reduce using rule 56 (Expresion -> call .)
+    PUNTOCOMA       reduce using rule 56 (Expresion -> call .)
+    CORCHDER        reduce using rule 56 (Expresion -> call .)
+
+
+state 86
+
+    (55) Expresion -> location .
+
+    PARENDER        reduce using rule 55 (Expresion -> location .)
+    PUNTO           reduce using rule 55 (Expresion -> location .)
+    CORCHIZ         reduce using rule 55 (Expresion -> location .)
+    MAS             reduce using rule 55 (Expresion -> location .)
+    MENOS           reduce using rule 55 (Expresion -> location .)
+    MULTI           reduce using rule 55 (Expresion -> location .)
+    DIVISION        reduce using rule 55 (Expresion -> location .)
+    MODULO          reduce using rule 55 (Expresion -> location .)
+    AND             reduce using rule 55 (Expresion -> location .)
+    OR              reduce using rule 55 (Expresion -> location .)
+    MENOR           reduce using rule 55 (Expresion -> location .)
+    MENORIG         reduce using rule 55 (Expresion -> location .)
+    MAYOR           reduce using rule 55 (Expresion -> location .)
+    MAYORIG         reduce using rule 55 (Expresion -> location .)
+    COMPARAR        reduce using rule 55 (Expresion -> location .)
+    DIFERCOMP       reduce using rule 55 (Expresion -> location .)
+    COMA            reduce using rule 55 (Expresion -> location .)
+    PUNTOCOMA       reduce using rule 55 (Expresion -> location .)
+    CORCHDER        reduce using rule 55 (Expresion -> location .)
+
+
+state 87
+
+    (34) stmt -> RETURN Expresion . PUNTOCOMA
+    (60) Expresion -> Expresion . PUNTO LENGTH
+    (61) Expresion -> Expresion . binary Expresion
+    (45) location -> Expresion . PUNTO ID
+    (46) location -> Expresion . CORCHIZ Expresion CORCHIZ
+    (50) method -> Expresion . PUNTO ID
+    (63) binary -> . MAS
+    (64) binary -> . MENOS
+    (65) binary -> . MULTI
+    (66) binary -> . DIVISION
+    (67) binary -> . MODULO
+    (68) binary -> . AND
+    (69) binary -> . OR
+    (70) binary -> . MENOR
+    (71) binary -> . MENORIG
+    (72) binary -> . MAYOR
+    (73) binary -> . MAYORIG
+    (74) binary -> . COMPARAR
+    (75) binary -> . DIFERCOMP
+
+    PUNTOCOMA       shift and go to state 121
+    PUNTO           shift and go to state 122
+    CORCHIZ         shift and go to state 98
+    MAS             shift and go to state 97
+    MENOS           shift and go to state 107
+    MULTI           shift and go to state 104
+    DIVISION        shift and go to state 101
+    MODULO          shift and go to state 99
+    AND             shift and go to state 111
+    OR              shift and go to state 105
+    MENOR           shift and go to state 102
+    MENORIG         shift and go to state 109
+    MAYOR           shift and go to state 103
+    MAYORIG         shift and go to state 100
+    COMPARAR        shift and go to state 108
+    DIFERCOMP       shift and go to state 110
+
+    binary                         shift and go to state 96
+
+state 88
+
+    (38) stmt -> WHILE PARENIZQ . Expresion PARENDER stmt
+    (55) Expresion -> . location
+    (56) Expresion -> . call
+    (57) Expresion -> . THIS
+    (58) Expresion -> . NEW ID PARENIZQ PARENDER
+    (59) Expresion -> . NEW Type CORCHIZ Expresion CORCHDER
+    (60) Expresion -> . Expresion PUNTO LENGTH
+    (61) Expresion -> . Expresion binary Expresion
+    (62) Expresion -> . Unary Expresion
+    (78) Expresion -> . Literal
+    (84) Expresion -> . PARENIZQ Expresion PARENDER
+    (44) location -> . ID
+    (45) location -> . Expresion PUNTO ID
+    (46) location -> . Expresion CORCHIZ Expresion CORCHIZ
+    (47) call -> . method PARENIZQ actuals PARENDER
+    (48) call -> . method PARENIZQ PARENDER
+    (76) Unary -> . MENOS
+    (77) Unary -> . DIFER
+    (79) Literal -> . TRUE
+    (80) Literal -> . CADENA
+    (81) Literal -> . FALSE
+    (82) Literal -> . NULL
+    (83) Literal -> . ENTNUM
+    (49) method -> . ID
+    (50) method -> . Expresion PUNTO ID
+
+    THIS            shift and go to state 75
+    NEW             shift and go to state 59
+    PARENIZQ        shift and go to state 67
+    ID              shift and go to state 72
+    MENOS           shift and go to state 63
+    DIFER           shift and go to state 56
+    TRUE            shift and go to state 61
+    CADENA          shift and go to state 62
+    FALSE           shift and go to state 74
+    NULL            shift and go to state 60
+    ENTNUM          shift and go to state 71
+
+    Expresion                      shift and go to state 123
+    Unary                          shift and go to state 58
+    Literal                        shift and go to state 76
+    call                           shift and go to state 85
+    location                       shift and go to state 86
+    method                         shift and go to state 66
+
+state 89
+
+    (62) Expresion -> Unary Expresion .
+    (60) Expresion -> Expresion . PUNTO LENGTH
+    (61) Expresion -> Expresion . binary Expresion
+    (45) location -> Expresion . PUNTO ID
+    (46) location -> Expresion . CORCHIZ Expresion CORCHIZ
+    (50) method -> Expresion . PUNTO ID
+    (63) binary -> . MAS
+    (64) binary -> . MENOS
+    (65) binary -> . MULTI
+    (66) binary -> . DIVISION
+    (67) binary -> . MODULO
+    (68) binary -> . AND
+    (69) binary -> . OR
+    (70) binary -> . MENOR
+    (71) binary -> . MENORIG
+    (72) binary -> . MAYOR
+    (73) binary -> . MAYORIG
+    (74) binary -> . COMPARAR
+    (75) binary -> . DIFERCOMP
+
+  ! shift/reduce conflict for PUNTO resolved as shift
+  ! shift/reduce conflict for CORCHIZ resolved as shift
+  ! shift/reduce conflict for MAS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for MULTI resolved as shift
+  ! shift/reduce conflict for DIVISION resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENORIG resolved as shift
+  ! shift/reduce conflict for MAYOR resolved as shift
+  ! shift/reduce conflict for MAYORIG resolved as shift
+  ! shift/reduce conflict for COMPARAR resolved as shift
+  ! shift/reduce conflict for DIFERCOMP resolved as shift
+    PARENDER        reduce using rule 62 (Expresion -> Unary Expresion .)
+    COMA            reduce using rule 62 (Expresion -> Unary Expresion .)
+    PUNTOCOMA       reduce using rule 62 (Expresion -> Unary Expresion .)
+    CORCHDER        reduce using rule 62 (Expresion -> Unary Expresion .)
+    PUNTO           shift and go to state 122
+    CORCHIZ         shift and go to state 98
+    MAS             shift and go to state 97
+    MENOS           shift and go to state 107
+    MULTI           shift and go to state 104
+    DIVISION        shift and go to state 101
+    MODULO          shift and go to state 99
+    AND             shift and go to state 111
+    OR              shift and go to state 105
+    MENOR           shift and go to state 102
+    MENORIG         shift and go to state 109
+    MAYOR           shift and go to state 103
+    MAYORIG         shift and go to state 100
+    COMPARAR        shift and go to state 108
+    DIFERCOMP       shift and go to state 110
+
+  ! PUNTO           [ reduce using rule 62 (Expresion -> Unary Expresion .) ]
+  ! CORCHIZ         [ reduce using rule 62 (Expresion -> Unary Expresion .) ]
+  ! MAS             [ reduce using rule 62 (Expresion -> Unary Expresion .) ]
+  ! MENOS           [ reduce using rule 62 (Expresion -> Unary Expresion .) ]
+  ! MULTI           [ reduce using rule 62 (Expresion -> Unary Expresion .) ]
+  ! DIVISION        [ reduce using rule 62 (Expresion -> Unary Expresion .) ]
+  ! MODULO          [ reduce using rule 62 (Expresion -> Unary Expresion .) ]
+  ! AND             [ reduce using rule 62 (Expresion -> Unary Expresion .) ]
+  ! OR              [ reduce using rule 62 (Expresion -> Unary Expresion .) ]
+  ! MENOR           [ reduce using rule 62 (Expresion -> Unary Expresion .) ]
+  ! MENORIG         [ reduce using rule 62 (Expresion -> Unary Expresion .) ]
+  ! MAYOR           [ reduce using rule 62 (Expresion -> Unary Expresion .) ]
+  ! MAYORIG         [ reduce using rule 62 (Expresion -> Unary Expresion .) ]
+  ! COMPARAR        [ reduce using rule 62 (Expresion -> Unary Expresion .) ]
+  ! DIFERCOMP       [ reduce using rule 62 (Expresion -> Unary Expresion .) ]
+
+    binary                         shift and go to state 96
+
+state 90
+
+    (59) Expresion -> NEW Type . CORCHIZ Expresion CORCHDER
+    (21) Type -> Type . CORCHIZ CORCHDER
+
+    CORCHIZ         shift and go to state 124
+
+
+state 91
+
+    (58) Expresion -> NEW ID . PARENIZQ PARENDER
+
+    PARENIZQ        shift and go to state 125
+
+
+state 92
+
+    (33) stmt -> call PUNTOCOMA .
+
+    RETURN          reduce using rule 33 (stmt -> call PUNTOCOMA .)
+    IF              reduce using rule 33 (stmt -> call PUNTOCOMA .)
+    WHILE           reduce using rule 33 (stmt -> call PUNTOCOMA .)
+    BREAK           reduce using rule 33 (stmt -> call PUNTOCOMA .)
+    CONTINUE        reduce using rule 33 (stmt -> call PUNTOCOMA .)
+    LLAVEIZ         reduce using rule 33 (stmt -> call PUNTOCOMA .)
+    ID              reduce using rule 33 (stmt -> call PUNTOCOMA .)
+    THIS            reduce using rule 33 (stmt -> call PUNTOCOMA .)
+    NEW             reduce using rule 33 (stmt -> call PUNTOCOMA .)
+    PARENIZQ        reduce using rule 33 (stmt -> call PUNTOCOMA .)
+    MENOS           reduce using rule 33 (stmt -> call PUNTOCOMA .)
+    DIFER           reduce using rule 33 (stmt -> call PUNTOCOMA .)
+    TRUE            reduce using rule 33 (stmt -> call PUNTOCOMA .)
+    CADENA          reduce using rule 33 (stmt -> call PUNTOCOMA .)
+    FALSE           reduce using rule 33 (stmt -> call PUNTOCOMA .)
+    NULL            reduce using rule 33 (stmt -> call PUNTOCOMA .)
+    ENTNUM          reduce using rule 33 (stmt -> call PUNTOCOMA .)
+    PUNTOCOMA       reduce using rule 33 (stmt -> call PUNTOCOMA .)
+    LLAVEDER        reduce using rule 33 (stmt -> call PUNTOCOMA .)
+    ELSE            reduce using rule 33 (stmt -> call PUNTOCOMA .)
+
+
+state 93
+
+    (42) assign -> location IGUAL . Expresion
+    (55) Expresion -> . location
+    (56) Expresion -> . call
+    (57) Expresion -> . THIS
+    (58) Expresion -> . NEW ID PARENIZQ PARENDER
+    (59) Expresion -> . NEW Type CORCHIZ Expresion CORCHDER
+    (60) Expresion -> . Expresion PUNTO LENGTH
+    (61) Expresion -> . Expresion binary Expresion
+    (62) Expresion -> . Unary Expresion
+    (78) Expresion -> . Literal
+    (84) Expresion -> . PARENIZQ Expresion PARENDER
+    (44) location -> . ID
+    (45) location -> . Expresion PUNTO ID
+    (46) location -> . Expresion CORCHIZ Expresion CORCHIZ
+    (47) call -> . method PARENIZQ actuals PARENDER
+    (48) call -> . method PARENIZQ PARENDER
+    (76) Unary -> . MENOS
+    (77) Unary -> . DIFER
+    (79) Literal -> . TRUE
+    (80) Literal -> . CADENA
+    (81) Literal -> . FALSE
+    (82) Literal -> . NULL
+    (83) Literal -> . ENTNUM
+    (49) method -> . ID
+    (50) method -> . Expresion PUNTO ID
+
+    THIS            shift and go to state 75
+    NEW             shift and go to state 59
+    PARENIZQ        shift and go to state 67
+    ID              shift and go to state 72
+    MENOS           shift and go to state 63
+    DIFER           shift and go to state 56
+    TRUE            shift and go to state 61
+    CADENA          shift and go to state 62
+    FALSE           shift and go to state 74
+    NULL            shift and go to state 60
+    ENTNUM          shift and go to state 71
+
+    Expresion                      shift and go to state 126
+    Unary                          shift and go to state 58
+    Literal                        shift and go to state 76
+    call                           shift and go to state 85
+    location                       shift and go to state 86
+    method                         shift and go to state 66
+
+state 94
+
+    (47) call -> method PARENIZQ . actuals PARENDER
+    (48) call -> method PARENIZQ . PARENDER
+    (51) actuals -> . Expresion LsActualesExp
+    (52) actuals -> . vacio
+    (55) Expresion -> . location
+    (56) Expresion -> . call
+    (57) Expresion -> . THIS
+    (58) Expresion -> . NEW ID PARENIZQ PARENDER
+    (59) Expresion -> . NEW Type CORCHIZ Expresion CORCHDER
+    (60) Expresion -> . Expresion PUNTO LENGTH
+    (61) Expresion -> . Expresion binary Expresion
+    (62) Expresion -> . Unary Expresion
+    (78) Expresion -> . Literal
+    (84) Expresion -> . PARENIZQ Expresion PARENDER
+    (85) vacio -> .
+    (44) location -> . ID
+    (45) location -> . Expresion PUNTO ID
+    (46) location -> . Expresion CORCHIZ Expresion CORCHIZ
+    (47) call -> . method PARENIZQ actuals PARENDER
+    (48) call -> . method PARENIZQ PARENDER
+    (76) Unary -> . MENOS
+    (77) Unary -> . DIFER
+    (79) Literal -> . TRUE
+    (80) Literal -> . CADENA
+    (81) Literal -> . FALSE
+    (82) Literal -> . NULL
+    (83) Literal -> . ENTNUM
+    (49) method -> . ID
+    (50) method -> . Expresion PUNTO ID
+
+  ! shift/reduce conflict for PARENDER resolved as shift
+    PARENDER        shift and go to state 127
+    THIS            shift and go to state 75
+    NEW             shift and go to state 59
+    PARENIZQ        shift and go to state 67
+    ID              shift and go to state 72
+    MENOS           shift and go to state 63
+    DIFER           shift and go to state 56
+    TRUE            shift and go to state 61
+    CADENA          shift and go to state 62
+    FALSE           shift and go to state 74
+    NULL            shift and go to state 60
+    ENTNUM          shift and go to state 71
+
+  ! PARENDER        [ reduce using rule 85 (vacio -> .) ]
+
+    Expresion                      shift and go to state 128
+    Literal                        shift and go to state 76
+    vacio                          shift and go to state 130
+    Unary                          shift and go to state 58
+    actuals                        shift and go to state 129
+    call                           shift and go to state 85
+    location                       shift and go to state 86
+    method                         shift and go to state 66
+
+state 95
+
+    (84) Expresion -> PARENIZQ Expresion . PARENDER
+    (60) Expresion -> Expresion . PUNTO LENGTH
+    (61) Expresion -> Expresion . binary Expresion
+    (45) location -> Expresion . PUNTO ID
+    (46) location -> Expresion . CORCHIZ Expresion CORCHIZ
+    (50) method -> Expresion . PUNTO ID
+    (63) binary -> . MAS
+    (64) binary -> . MENOS
+    (65) binary -> . MULTI
+    (66) binary -> . DIVISION
+    (67) binary -> . MODULO
+    (68) binary -> . AND
+    (69) binary -> . OR
+    (70) binary -> . MENOR
+    (71) binary -> . MENORIG
+    (72) binary -> . MAYOR
+    (73) binary -> . MAYORIG
+    (74) binary -> . COMPARAR
+    (75) binary -> . DIFERCOMP
+
+    PARENDER        shift and go to state 131
+    PUNTO           shift and go to state 122
+    CORCHIZ         shift and go to state 98
+    MAS             shift and go to state 97
+    MENOS           shift and go to state 107
+    MULTI           shift and go to state 104
+    DIVISION        shift and go to state 101
+    MODULO          shift and go to state 99
+    AND             shift and go to state 111
+    OR              shift and go to state 105
+    MENOR           shift and go to state 102
+    MENORIG         shift and go to state 109
+    MAYOR           shift and go to state 103
+    MAYORIG         shift and go to state 100
+    COMPARAR        shift and go to state 108
+    DIFERCOMP       shift and go to state 110
+
+    binary                         shift and go to state 96
+
+state 96
+
+    (61) Expresion -> Expresion binary . Expresion
+    (55) Expresion -> . location
+    (56) Expresion -> . call
+    (57) Expresion -> . THIS
+    (58) Expresion -> . NEW ID PARENIZQ PARENDER
+    (59) Expresion -> . NEW Type CORCHIZ Expresion CORCHDER
+    (60) Expresion -> . Expresion PUNTO LENGTH
+    (61) Expresion -> . Expresion binary Expresion
+    (62) Expresion -> . Unary Expresion
+    (78) Expresion -> . Literal
+    (84) Expresion -> . PARENIZQ Expresion PARENDER
+    (44) location -> . ID
+    (45) location -> . Expresion PUNTO ID
+    (46) location -> . Expresion CORCHIZ Expresion CORCHIZ
+    (47) call -> . method PARENIZQ actuals PARENDER
+    (48) call -> . method PARENIZQ PARENDER
+    (76) Unary -> . MENOS
+    (77) Unary -> . DIFER
+    (79) Literal -> . TRUE
+    (80) Literal -> . CADENA
+    (81) Literal -> . FALSE
+    (82) Literal -> . NULL
+    (83) Literal -> . ENTNUM
+    (49) method -> . ID
+    (50) method -> . Expresion PUNTO ID
+
+    THIS            shift and go to state 75
+    NEW             shift and go to state 59
+    PARENIZQ        shift and go to state 67
+    ID              shift and go to state 72
+    MENOS           shift and go to state 63
+    DIFER           shift and go to state 56
+    TRUE            shift and go to state 61
+    CADENA          shift and go to state 62
+    FALSE           shift and go to state 74
+    NULL            shift and go to state 60
+    ENTNUM          shift and go to state 71
+
+    Expresion                      shift and go to state 132
+    Unary                          shift and go to state 58
+    Literal                        shift and go to state 76
+    call                           shift and go to state 85
+    location                       shift and go to state 86
+    method                         shift and go to state 66
+
+state 97
+
+    (63) binary -> MAS .
+
+    THIS            reduce using rule 63 (binary -> MAS .)
+    NEW             reduce using rule 63 (binary -> MAS .)
+    PARENIZQ        reduce using rule 63 (binary -> MAS .)
+    ID              reduce using rule 63 (binary -> MAS .)
+    MENOS           reduce using rule 63 (binary -> MAS .)
+    DIFER           reduce using rule 63 (binary -> MAS .)
+    TRUE            reduce using rule 63 (binary -> MAS .)
+    CADENA          reduce using rule 63 (binary -> MAS .)
+    FALSE           reduce using rule 63 (binary -> MAS .)
+    NULL            reduce using rule 63 (binary -> MAS .)
+    ENTNUM          reduce using rule 63 (binary -> MAS .)
+
+
+state 98
+
+    (46) location -> Expresion CORCHIZ . Expresion CORCHIZ
+    (55) Expresion -> . location
+    (56) Expresion -> . call
+    (57) Expresion -> . THIS
+    (58) Expresion -> . NEW ID PARENIZQ PARENDER
+    (59) Expresion -> . NEW Type CORCHIZ Expresion CORCHDER
+    (60) Expresion -> . Expresion PUNTO LENGTH
+    (61) Expresion -> . Expresion binary Expresion
+    (62) Expresion -> . Unary Expresion
+    (78) Expresion -> . Literal
+    (84) Expresion -> . PARENIZQ Expresion PARENDER
+    (44) location -> . ID
+    (45) location -> . Expresion PUNTO ID
+    (46) location -> . Expresion CORCHIZ Expresion CORCHIZ
+    (47) call -> . method PARENIZQ actuals PARENDER
+    (48) call -> . method PARENIZQ PARENDER
+    (76) Unary -> . MENOS
+    (77) Unary -> . DIFER
+    (79) Literal -> . TRUE
+    (80) Literal -> . CADENA
+    (81) Literal -> . FALSE
+    (82) Literal -> . NULL
+    (83) Literal -> . ENTNUM
+    (49) method -> . ID
+    (50) method -> . Expresion PUNTO ID
+
+    THIS            shift and go to state 75
+    NEW             shift and go to state 59
+    PARENIZQ        shift and go to state 67
+    ID              shift and go to state 72
+    MENOS           shift and go to state 63
+    DIFER           shift and go to state 56
+    TRUE            shift and go to state 61
+    CADENA          shift and go to state 62
+    FALSE           shift and go to state 74
+    NULL            shift and go to state 60
+    ENTNUM          shift and go to state 71
+
+    Expresion                      shift and go to state 133
+    Unary                          shift and go to state 58
+    Literal                        shift and go to state 76
+    call                           shift and go to state 85
+    location                       shift and go to state 86
+    method                         shift and go to state 66
+
+state 99
+
+    (67) binary -> MODULO .
+
+    THIS            reduce using rule 67 (binary -> MODULO .)
+    NEW             reduce using rule 67 (binary -> MODULO .)
+    PARENIZQ        reduce using rule 67 (binary -> MODULO .)
+    ID              reduce using rule 67 (binary -> MODULO .)
+    MENOS           reduce using rule 67 (binary -> MODULO .)
+    DIFER           reduce using rule 67 (binary -> MODULO .)
+    TRUE            reduce using rule 67 (binary -> MODULO .)
+    CADENA          reduce using rule 67 (binary -> MODULO .)
+    FALSE           reduce using rule 67 (binary -> MODULO .)
+    NULL            reduce using rule 67 (binary -> MODULO .)
+    ENTNUM          reduce using rule 67 (binary -> MODULO .)
+
+
+state 100
+
+    (73) binary -> MAYORIG .
+
+    THIS            reduce using rule 73 (binary -> MAYORIG .)
+    NEW             reduce using rule 73 (binary -> MAYORIG .)
+    PARENIZQ        reduce using rule 73 (binary -> MAYORIG .)
+    ID              reduce using rule 73 (binary -> MAYORIG .)
+    MENOS           reduce using rule 73 (binary -> MAYORIG .)
+    DIFER           reduce using rule 73 (binary -> MAYORIG .)
+    TRUE            reduce using rule 73 (binary -> MAYORIG .)
+    CADENA          reduce using rule 73 (binary -> MAYORIG .)
+    FALSE           reduce using rule 73 (binary -> MAYORIG .)
+    NULL            reduce using rule 73 (binary -> MAYORIG .)
+    ENTNUM          reduce using rule 73 (binary -> MAYORIG .)
+
+
+state 101
+
+    (66) binary -> DIVISION .
+
+    THIS            reduce using rule 66 (binary -> DIVISION .)
+    NEW             reduce using rule 66 (binary -> DIVISION .)
+    PARENIZQ        reduce using rule 66 (binary -> DIVISION .)
+    ID              reduce using rule 66 (binary -> DIVISION .)
+    MENOS           reduce using rule 66 (binary -> DIVISION .)
+    DIFER           reduce using rule 66 (binary -> DIVISION .)
+    TRUE            reduce using rule 66 (binary -> DIVISION .)
+    CADENA          reduce using rule 66 (binary -> DIVISION .)
+    FALSE           reduce using rule 66 (binary -> DIVISION .)
+    NULL            reduce using rule 66 (binary -> DIVISION .)
+    ENTNUM          reduce using rule 66 (binary -> DIVISION .)
+
+
+state 102
+
+    (70) binary -> MENOR .
+
+    THIS            reduce using rule 70 (binary -> MENOR .)
+    NEW             reduce using rule 70 (binary -> MENOR .)
+    PARENIZQ        reduce using rule 70 (binary -> MENOR .)
+    ID              reduce using rule 70 (binary -> MENOR .)
+    MENOS           reduce using rule 70 (binary -> MENOR .)
+    DIFER           reduce using rule 70 (binary -> MENOR .)
+    TRUE            reduce using rule 70 (binary -> MENOR .)
+    CADENA          reduce using rule 70 (binary -> MENOR .)
+    FALSE           reduce using rule 70 (binary -> MENOR .)
+    NULL            reduce using rule 70 (binary -> MENOR .)
+    ENTNUM          reduce using rule 70 (binary -> MENOR .)
+
+
+state 103
+
+    (72) binary -> MAYOR .
+
+    THIS            reduce using rule 72 (binary -> MAYOR .)
+    NEW             reduce using rule 72 (binary -> MAYOR .)
+    PARENIZQ        reduce using rule 72 (binary -> MAYOR .)
+    ID              reduce using rule 72 (binary -> MAYOR .)
+    MENOS           reduce using rule 72 (binary -> MAYOR .)
+    DIFER           reduce using rule 72 (binary -> MAYOR .)
+    TRUE            reduce using rule 72 (binary -> MAYOR .)
+    CADENA          reduce using rule 72 (binary -> MAYOR .)
+    FALSE           reduce using rule 72 (binary -> MAYOR .)
+    NULL            reduce using rule 72 (binary -> MAYOR .)
+    ENTNUM          reduce using rule 72 (binary -> MAYOR .)
+
+
+state 104
+
+    (65) binary -> MULTI .
+
+    THIS            reduce using rule 65 (binary -> MULTI .)
+    NEW             reduce using rule 65 (binary -> MULTI .)
+    PARENIZQ        reduce using rule 65 (binary -> MULTI .)
+    ID              reduce using rule 65 (binary -> MULTI .)
+    MENOS           reduce using rule 65 (binary -> MULTI .)
+    DIFER           reduce using rule 65 (binary -> MULTI .)
+    TRUE            reduce using rule 65 (binary -> MULTI .)
+    CADENA          reduce using rule 65 (binary -> MULTI .)
+    FALSE           reduce using rule 65 (binary -> MULTI .)
+    NULL            reduce using rule 65 (binary -> MULTI .)
+    ENTNUM          reduce using rule 65 (binary -> MULTI .)
+
+
+state 105
+
+    (69) binary -> OR .
+
+    THIS            reduce using rule 69 (binary -> OR .)
+    NEW             reduce using rule 69 (binary -> OR .)
+    PARENIZQ        reduce using rule 69 (binary -> OR .)
+    ID              reduce using rule 69 (binary -> OR .)
+    MENOS           reduce using rule 69 (binary -> OR .)
+    DIFER           reduce using rule 69 (binary -> OR .)
+    TRUE            reduce using rule 69 (binary -> OR .)
+    CADENA          reduce using rule 69 (binary -> OR .)
+    FALSE           reduce using rule 69 (binary -> OR .)
+    NULL            reduce using rule 69 (binary -> OR .)
+    ENTNUM          reduce using rule 69 (binary -> OR .)
+
+
+state 106
+
+    (45) location -> Expresion PUNTO . ID
+    (50) method -> Expresion PUNTO . ID
+    (60) Expresion -> Expresion PUNTO . LENGTH
+
+    ID              shift and go to state 135
+    LENGTH          shift and go to state 134
+
+
+state 107
+
+    (64) binary -> MENOS .
+
+    THIS            reduce using rule 64 (binary -> MENOS .)
+    NEW             reduce using rule 64 (binary -> MENOS .)
+    PARENIZQ        reduce using rule 64 (binary -> MENOS .)
+    ID              reduce using rule 64 (binary -> MENOS .)
+    MENOS           reduce using rule 64 (binary -> MENOS .)
+    DIFER           reduce using rule 64 (binary -> MENOS .)
+    TRUE            reduce using rule 64 (binary -> MENOS .)
+    CADENA          reduce using rule 64 (binary -> MENOS .)
+    FALSE           reduce using rule 64 (binary -> MENOS .)
+    NULL            reduce using rule 64 (binary -> MENOS .)
+    ENTNUM          reduce using rule 64 (binary -> MENOS .)
+
+
+state 108
+
+    (74) binary -> COMPARAR .
+
+    THIS            reduce using rule 74 (binary -> COMPARAR .)
+    NEW             reduce using rule 74 (binary -> COMPARAR .)
+    PARENIZQ        reduce using rule 74 (binary -> COMPARAR .)
+    ID              reduce using rule 74 (binary -> COMPARAR .)
+    MENOS           reduce using rule 74 (binary -> COMPARAR .)
+    DIFER           reduce using rule 74 (binary -> COMPARAR .)
+    TRUE            reduce using rule 74 (binary -> COMPARAR .)
+    CADENA          reduce using rule 74 (binary -> COMPARAR .)
+    FALSE           reduce using rule 74 (binary -> COMPARAR .)
+    NULL            reduce using rule 74 (binary -> COMPARAR .)
+    ENTNUM          reduce using rule 74 (binary -> COMPARAR .)
+
+
+state 109
+
+    (71) binary -> MENORIG .
+
+    THIS            reduce using rule 71 (binary -> MENORIG .)
+    NEW             reduce using rule 71 (binary -> MENORIG .)
+    PARENIZQ        reduce using rule 71 (binary -> MENORIG .)
+    ID              reduce using rule 71 (binary -> MENORIG .)
+    MENOS           reduce using rule 71 (binary -> MENORIG .)
+    DIFER           reduce using rule 71 (binary -> MENORIG .)
+    TRUE            reduce using rule 71 (binary -> MENORIG .)
+    CADENA          reduce using rule 71 (binary -> MENORIG .)
+    FALSE           reduce using rule 71 (binary -> MENORIG .)
+    NULL            reduce using rule 71 (binary -> MENORIG .)
+    ENTNUM          reduce using rule 71 (binary -> MENORIG .)
+
+
+state 110
+
+    (75) binary -> DIFERCOMP .
+
+    THIS            reduce using rule 75 (binary -> DIFERCOMP .)
+    NEW             reduce using rule 75 (binary -> DIFERCOMP .)
+    PARENIZQ        reduce using rule 75 (binary -> DIFERCOMP .)
+    ID              reduce using rule 75 (binary -> DIFERCOMP .)
+    MENOS           reduce using rule 75 (binary -> DIFERCOMP .)
+    DIFER           reduce using rule 75 (binary -> DIFERCOMP .)
+    TRUE            reduce using rule 75 (binary -> DIFERCOMP .)
+    CADENA          reduce using rule 75 (binary -> DIFERCOMP .)
+    FALSE           reduce using rule 75 (binary -> DIFERCOMP .)
+    NULL            reduce using rule 75 (binary -> DIFERCOMP .)
+    ENTNUM          reduce using rule 75 (binary -> DIFERCOMP .)
+
+
+state 111
+
+    (68) binary -> AND .
+
+    THIS            reduce using rule 68 (binary -> AND .)
+    NEW             reduce using rule 68 (binary -> AND .)
+    PARENIZQ        reduce using rule 68 (binary -> AND .)
+    ID              reduce using rule 68 (binary -> AND .)
+    MENOS           reduce using rule 68 (binary -> AND .)
+    DIFER           reduce using rule 68 (binary -> AND .)
+    TRUE            reduce using rule 68 (binary -> AND .)
+    CADENA          reduce using rule 68 (binary -> AND .)
+    FALSE           reduce using rule 68 (binary -> AND .)
+    NULL            reduce using rule 68 (binary -> AND .)
+    ENTNUM          reduce using rule 68 (binary -> AND .)
+
+
+state 112
+
+    (30) lstmtDecl -> stmt lstmtDecl .
+
+    LLAVEDER        reduce using rule 30 (lstmtDecl -> stmt lstmtDecl .)
+
+
+state 113
+
+    (22) block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .
+
+    RETURN          reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    IF              reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    WHILE           reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    BREAK           reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    CONTINUE        reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    LLAVEIZ         reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    ID              reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    THIS            reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    NEW             reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    PARENIZQ        reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    MENOS           reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    DIFER           reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    TRUE            reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    CADENA          reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    FALSE           reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    NULL            reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    ENTNUM          reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    PUNTOCOMA       reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    LLAVEDER        reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    ELSE            reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    VOID            reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    INT             reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    BOOLEAN         reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+    STRING          reduce using rule 22 (block -> LLAVEIZ lsVarDecl lstmtDecl LLAVEDER .)
+
+
+state 114
+
+    (36) stmt -> IF PARENIZQ . Expresion PARENDER stmt ELSE stmt
+    (37) stmt -> IF PARENIZQ . Expresion PARENDER stmt
+    (55) Expresion -> . location
+    (56) Expresion -> . call
+    (57) Expresion -> . THIS
+    (58) Expresion -> . NEW ID PARENIZQ PARENDER
+    (59) Expresion -> . NEW Type CORCHIZ Expresion CORCHDER
+    (60) Expresion -> . Expresion PUNTO LENGTH
+    (61) Expresion -> . Expresion binary Expresion
+    (62) Expresion -> . Unary Expresion
+    (78) Expresion -> . Literal
+    (84) Expresion -> . PARENIZQ Expresion PARENDER
+    (44) location -> . ID
+    (45) location -> . Expresion PUNTO ID
+    (46) location -> . Expresion CORCHIZ Expresion CORCHIZ
+    (47) call -> . method PARENIZQ actuals PARENDER
+    (48) call -> . method PARENIZQ PARENDER
+    (76) Unary -> . MENOS
+    (77) Unary -> . DIFER
+    (79) Literal -> . TRUE
+    (80) Literal -> . CADENA
+    (81) Literal -> . FALSE
+    (82) Literal -> . NULL
+    (83) Literal -> . ENTNUM
+    (49) method -> . ID
+    (50) method -> . Expresion PUNTO ID
+
+    THIS            shift and go to state 75
+    NEW             shift and go to state 59
+    PARENIZQ        shift and go to state 67
+    ID              shift and go to state 72
+    MENOS           shift and go to state 63
+    DIFER           shift and go to state 56
+    TRUE            shift and go to state 61
+    CADENA          shift and go to state 62
+    FALSE           shift and go to state 74
+    NULL            shift and go to state 60
+    ENTNUM          shift and go to state 71
+
+    Expresion                      shift and go to state 136
+    Unary                          shift and go to state 58
+    Literal                        shift and go to state 76
+    call                           shift and go to state 85
+    location                       shift and go to state 86
+    method                         shift and go to state 66
+
+state 115
+
+    (39) stmt -> BREAK PUNTOCOMA .
+
+    RETURN          reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+    IF              reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+    WHILE           reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+    BREAK           reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+    CONTINUE        reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+    LLAVEIZ         reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+    ID              reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+    THIS            reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+    NEW             reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+    PARENIZQ        reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+    MENOS           reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+    DIFER           reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+    TRUE            reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+    CADENA          reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+    FALSE           reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+    NULL            reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+    ENTNUM          reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+    PUNTOCOMA       reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+    LLAVEDER        reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+    ELSE            reduce using rule 39 (stmt -> BREAK PUNTOCOMA .)
+
+
+state 116
+
+    (40) stmt -> CONTINUE PUNTOCOMA .
+
+    RETURN          reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+    IF              reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+    WHILE           reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+    BREAK           reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+    CONTINUE        reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+    LLAVEIZ         reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+    ID              reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+    THIS            reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+    NEW             reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+    PARENIZQ        reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+    MENOS           reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+    DIFER           reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+    TRUE            reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+    CADENA          reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+    FALSE           reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+    NULL            reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+    ENTNUM          reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+    PUNTOCOMA       reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+    LLAVEDER        reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+    ELSE            reduce using rule 40 (stmt -> CONTINUE PUNTOCOMA .)
+
+
+state 117
+
+    (32) stmt -> assign PUNTOCOMA .
+
+    RETURN          reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+    IF              reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+    WHILE           reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+    BREAK           reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+    CONTINUE        reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+    LLAVEIZ         reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+    ID              reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+    THIS            reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+    NEW             reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+    PARENIZQ        reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+    MENOS           reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+    DIFER           reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+    TRUE            reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+    CADENA          reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+    FALSE           reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+    NULL            reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+    ENTNUM          reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+    PUNTOCOMA       reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+    LLAVEDER        reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+    ELSE            reduce using rule 32 (stmt -> assign PUNTOCOMA .)
+
+
+state 118
+
+    (25) Declaracion_Variable -> Type ID IgualExp . IdAsignExp PUNTOCOMA
+    (28) IdAsignExp -> . COMA ID IgualExp IdAsignExp
+    (29) IdAsignExp -> . vacio
+    (85) vacio -> .
+
+    COMA            shift and go to state 139
+    PUNTOCOMA       reduce using rule 85 (vacio -> .)
+
+    IdAsignExp                     shift and go to state 138
+    vacio                          shift and go to state 137
+
+state 119
+
+    (26) IgualExp -> IGUAL . Expresion
+    (55) Expresion -> . location
+    (56) Expresion -> . call
+    (57) Expresion -> . THIS
+    (58) Expresion -> . NEW ID PARENIZQ PARENDER
+    (59) Expresion -> . NEW Type CORCHIZ Expresion CORCHDER
+    (60) Expresion -> . Expresion PUNTO LENGTH
+    (61) Expresion -> . Expresion binary Expresion
+    (62) Expresion -> . Unary Expresion
+    (78) Expresion -> . Literal
+    (84) Expresion -> . PARENIZQ Expresion PARENDER
+    (44) location -> . ID
+    (45) location -> . Expresion PUNTO ID
+    (46) location -> . Expresion CORCHIZ Expresion CORCHIZ
+    (47) call -> . method PARENIZQ actuals PARENDER
+    (48) call -> . method PARENIZQ PARENDER
+    (76) Unary -> . MENOS
+    (77) Unary -> . DIFER
+    (79) Literal -> . TRUE
+    (80) Literal -> . CADENA
+    (81) Literal -> . FALSE
+    (82) Literal -> . NULL
+    (83) Literal -> . ENTNUM
+    (49) method -> . ID
+    (50) method -> . Expresion PUNTO ID
+
+    THIS            shift and go to state 75
+    NEW             shift and go to state 59
+    PARENIZQ        shift and go to state 67
+    ID              shift and go to state 72
+    MENOS           shift and go to state 63
+    DIFER           shift and go to state 56
+    TRUE            shift and go to state 61
+    CADENA          shift and go to state 62
+    FALSE           shift and go to state 74
+    NULL            shift and go to state 60
+    ENTNUM          shift and go to state 71
+
+    Expresion                      shift and go to state 140
+    Unary                          shift and go to state 58
+    Literal                        shift and go to state 76
+    call                           shift and go to state 85
+    location                       shift and go to state 86
+    method                         shift and go to state 66
+
+state 120
+
+    (27) IgualExp -> vacio .
+
+    COMA            reduce using rule 27 (IgualExp -> vacio .)
+    PUNTOCOMA       reduce using rule 27 (IgualExp -> vacio .)
+
+
+state 121
+
+    (34) stmt -> RETURN Expresion PUNTOCOMA .
+
+    RETURN          reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+    IF              reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+    WHILE           reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+    BREAK           reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+    CONTINUE        reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+    LLAVEIZ         reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+    ID              reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+    THIS            reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+    NEW             reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+    PARENIZQ        reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+    MENOS           reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+    DIFER           reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+    TRUE            reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+    CADENA          reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+    FALSE           reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+    NULL            reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+    ENTNUM          reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+    PUNTOCOMA       reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+    LLAVEDER        reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+    ELSE            reduce using rule 34 (stmt -> RETURN Expresion PUNTOCOMA .)
+
+
+state 122
+
+    (60) Expresion -> Expresion PUNTO . LENGTH
+    (45) location -> Expresion PUNTO . ID
+    (50) method -> Expresion PUNTO . ID
+
+    LENGTH          shift and go to state 134
+    ID              shift and go to state 135
+
+
+state 123
+
+    (38) stmt -> WHILE PARENIZQ Expresion . PARENDER stmt
+    (60) Expresion -> Expresion . PUNTO LENGTH
+    (61) Expresion -> Expresion . binary Expresion
+    (45) location -> Expresion . PUNTO ID
+    (46) location -> Expresion . CORCHIZ Expresion CORCHIZ
+    (50) method -> Expresion . PUNTO ID
+    (63) binary -> . MAS
+    (64) binary -> . MENOS
+    (65) binary -> . MULTI
+    (66) binary -> . DIVISION
+    (67) binary -> . MODULO
+    (68) binary -> . AND
+    (69) binary -> . OR
+    (70) binary -> . MENOR
+    (71) binary -> . MENORIG
+    (72) binary -> . MAYOR
+    (73) binary -> . MAYORIG
+    (74) binary -> . COMPARAR
+    (75) binary -> . DIFERCOMP
+
+    PARENDER        shift and go to state 141
+    PUNTO           shift and go to state 122
+    CORCHIZ         shift and go to state 98
+    MAS             shift and go to state 97
+    MENOS           shift and go to state 107
+    MULTI           shift and go to state 104
+    DIVISION        shift and go to state 101
+    MODULO          shift and go to state 99
+    AND             shift and go to state 111
+    OR              shift and go to state 105
+    MENOR           shift and go to state 102
+    MENORIG         shift and go to state 109
+    MAYOR           shift and go to state 103
+    MAYORIG         shift and go to state 100
+    COMPARAR        shift and go to state 108
+    DIFERCOMP       shift and go to state 110
+
+    binary                         shift and go to state 96
+
+state 124
+
+    (59) Expresion -> NEW Type CORCHIZ . Expresion CORCHDER
+    (21) Type -> Type CORCHIZ . CORCHDER
+    (55) Expresion -> . location
+    (56) Expresion -> . call
+    (57) Expresion -> . THIS
+    (58) Expresion -> . NEW ID PARENIZQ PARENDER
+    (59) Expresion -> . NEW Type CORCHIZ Expresion CORCHDER
+    (60) Expresion -> . Expresion PUNTO LENGTH
+    (61) Expresion -> . Expresion binary Expresion
+    (62) Expresion -> . Unary Expresion
+    (78) Expresion -> . Literal
+    (84) Expresion -> . PARENIZQ Expresion PARENDER
+    (44) location -> . ID
+    (45) location -> . Expresion PUNTO ID
+    (46) location -> . Expresion CORCHIZ Expresion CORCHIZ
+    (47) call -> . method PARENIZQ actuals PARENDER
+    (48) call -> . method PARENIZQ PARENDER
+    (76) Unary -> . MENOS
+    (77) Unary -> . DIFER
+    (79) Literal -> . TRUE
+    (80) Literal -> . CADENA
+    (81) Literal -> . FALSE
+    (82) Literal -> . NULL
+    (83) Literal -> . ENTNUM
+    (49) method -> . ID
+    (50) method -> . Expresion PUNTO ID
+
+    CORCHDER        shift and go to state 27
+    THIS            shift and go to state 75
+    NEW             shift and go to state 59
+    PARENIZQ        shift and go to state 67
+    ID              shift and go to state 72
+    MENOS           shift and go to state 63
+    DIFER           shift and go to state 56
+    TRUE            shift and go to state 61
+    CADENA          shift and go to state 62
+    FALSE           shift and go to state 74
+    NULL            shift and go to state 60
+    ENTNUM          shift and go to state 71
+
+    Expresion                      shift and go to state 142
+    Unary                          shift and go to state 58
+    Literal                        shift and go to state 76
+    call                           shift and go to state 85
+    location                       shift and go to state 86
+    method                         shift and go to state 66
+
+state 125
+
+    (58) Expresion -> NEW ID PARENIZQ . PARENDER
+
+    PARENDER        shift and go to state 143
+
+
+state 126
+
+    (42) assign -> location IGUAL Expresion .
+    (60) Expresion -> Expresion . PUNTO LENGTH
+    (61) Expresion -> Expresion . binary Expresion
+    (45) location -> Expresion . PUNTO ID
+    (46) location -> Expresion . CORCHIZ Expresion CORCHIZ
+    (50) method -> Expresion . PUNTO ID
+    (63) binary -> . MAS
+    (64) binary -> . MENOS
+    (65) binary -> . MULTI
+    (66) binary -> . DIVISION
+    (67) binary -> . MODULO
+    (68) binary -> . AND
+    (69) binary -> . OR
+    (70) binary -> . MENOR
+    (71) binary -> . MENORIG
+    (72) binary -> . MAYOR
+    (73) binary -> . MAYORIG
+    (74) binary -> . COMPARAR
+    (75) binary -> . DIFERCOMP
+
+    PUNTOCOMA       reduce using rule 42 (assign -> location IGUAL Expresion .)
+    PUNTO           shift and go to state 122
+    CORCHIZ         shift and go to state 98
+    MAS             shift and go to state 97
+    MENOS           shift and go to state 107
+    MULTI           shift and go to state 104
+    DIVISION        shift and go to state 101
+    MODULO          shift and go to state 99
+    AND             shift and go to state 111
+    OR              shift and go to state 105
+    MENOR           shift and go to state 102
+    MENORIG         shift and go to state 109
+    MAYOR           shift and go to state 103
+    MAYORIG         shift and go to state 100
+    COMPARAR        shift and go to state 108
+    DIFERCOMP       shift and go to state 110
+
+    binary                         shift and go to state 96
+
+state 127
+
+    (48) call -> method PARENIZQ PARENDER .
+
+    PUNTO           reduce using rule 48 (call -> method PARENIZQ PARENDER .)
+    CORCHIZ         reduce using rule 48 (call -> method PARENIZQ PARENDER .)
+    MAS             reduce using rule 48 (call -> method PARENIZQ PARENDER .)
+    MENOS           reduce using rule 48 (call -> method PARENIZQ PARENDER .)
+    MULTI           reduce using rule 48 (call -> method PARENIZQ PARENDER .)
+    DIVISION        reduce using rule 48 (call -> method PARENIZQ PARENDER .)
+    MODULO          reduce using rule 48 (call -> method PARENIZQ PARENDER .)
+    AND             reduce using rule 48 (call -> method PARENIZQ PARENDER .)
+    OR              reduce using rule 48 (call -> method PARENIZQ PARENDER .)
+    MENOR           reduce using rule 48 (call -> method PARENIZQ PARENDER .)
+    MENORIG         reduce using rule 48 (call -> method PARENIZQ PARENDER .)
+    MAYOR           reduce using rule 48 (call -> method PARENIZQ PARENDER .)
+    MAYORIG         reduce using rule 48 (call -> method PARENIZQ PARENDER .)
+    COMPARAR        reduce using rule 48 (call -> method PARENIZQ PARENDER .)
+    DIFERCOMP       reduce using rule 48 (call -> method PARENIZQ PARENDER .)
+    PUNTOCOMA       reduce using rule 48 (call -> method PARENIZQ PARENDER .)
+    PARENDER        reduce using rule 48 (call -> method PARENIZQ PARENDER .)
+    COMA            reduce using rule 48 (call -> method PARENIZQ PARENDER .)
+    CORCHDER        reduce using rule 48 (call -> method PARENIZQ PARENDER .)
+
+
+state 128
+
+    (51) actuals -> Expresion . LsActualesExp
+    (60) Expresion -> Expresion . PUNTO LENGTH
+    (61) Expresion -> Expresion . binary Expresion
+    (45) location -> Expresion . PUNTO ID
+    (46) location -> Expresion . CORCHIZ Expresion CORCHIZ
+    (50) method -> Expresion . PUNTO ID
+    (53) LsActualesExp -> . COMA Expresion LsActualesExp
+    (54) LsActualesExp -> . vacio
+    (63) binary -> . MAS
+    (64) binary -> . MENOS
+    (65) binary -> . MULTI
+    (66) binary -> . DIVISION
+    (67) binary -> . MODULO
+    (68) binary -> . AND
+    (69) binary -> . OR
+    (70) binary -> . MENOR
+    (71) binary -> . MENORIG
+    (72) binary -> . MAYOR
+    (73) binary -> . MAYORIG
+    (74) binary -> . COMPARAR
+    (75) binary -> . DIFERCOMP
+    (85) vacio -> .
+
+    PUNTO           shift and go to state 122
+    CORCHIZ         shift and go to state 98
+    COMA            shift and go to state 145
+    MAS             shift and go to state 97
+    MENOS           shift and go to state 107
+    MULTI           shift and go to state 104
+    DIVISION        shift and go to state 101
+    MODULO          shift and go to state 99
+    AND             shift and go to state 111
+    OR              shift and go to state 105
+    MENOR           shift and go to state 102
+    MENORIG         shift and go to state 109
+    MAYOR           shift and go to state 103
+    MAYORIG         shift and go to state 100
+    COMPARAR        shift and go to state 108
+    DIFERCOMP       shift and go to state 110
+    PARENDER        reduce using rule 85 (vacio -> .)
+
+    binary                         shift and go to state 96
+    vacio                          shift and go to state 146
+    LsActualesExp                  shift and go to state 144
+
+state 129
+
+    (47) call -> method PARENIZQ actuals . PARENDER
+
+    PARENDER        shift and go to state 147
+
+
+state 130
+
+    (52) actuals -> vacio .
+
+    PARENDER        reduce using rule 52 (actuals -> vacio .)
+
+
+state 131
+
+    (84) Expresion -> PARENIZQ Expresion PARENDER .
+
+    PUNTO           reduce using rule 84 (Expresion -> PARENIZQ Expresion PARENDER .)
+    CORCHIZ         reduce using rule 84 (Expresion -> PARENIZQ Expresion PARENDER .)
+    MAS             reduce using rule 84 (Expresion -> PARENIZQ Expresion PARENDER .)
+    MENOS           reduce using rule 84 (Expresion -> PARENIZQ Expresion PARENDER .)
+    MULTI           reduce using rule 84 (Expresion -> PARENIZQ Expresion PARENDER .)
+    DIVISION        reduce using rule 84 (Expresion -> PARENIZQ Expresion PARENDER .)
+    MODULO          reduce using rule 84 (Expresion -> PARENIZQ Expresion PARENDER .)
+    AND             reduce using rule 84 (Expresion -> PARENIZQ Expresion PARENDER .)
+    OR              reduce using rule 84 (Expresion -> PARENIZQ Expresion PARENDER .)
+    MENOR           reduce using rule 84 (Expresion -> PARENIZQ Expresion PARENDER .)
+    MENORIG         reduce using rule 84 (Expresion -> PARENIZQ Expresion PARENDER .)
+    MAYOR           reduce using rule 84 (Expresion -> PARENIZQ Expresion PARENDER .)
+    MAYORIG         reduce using rule 84 (Expresion -> PARENIZQ Expresion PARENDER .)
+    COMPARAR        reduce using rule 84 (Expresion -> PARENIZQ Expresion PARENDER .)
+    DIFERCOMP       reduce using rule 84 (Expresion -> PARENIZQ Expresion PARENDER .)
+    PARENDER        reduce using rule 84 (Expresion -> PARENIZQ Expresion PARENDER .)
+    COMA            reduce using rule 84 (Expresion -> PARENIZQ Expresion PARENDER .)
+    PUNTOCOMA       reduce using rule 84 (Expresion -> PARENIZQ Expresion PARENDER .)
+    CORCHDER        reduce using rule 84 (Expresion -> PARENIZQ Expresion PARENDER .)
+
+
+state 132
+
+    (61) Expresion -> Expresion binary Expresion .
+    (60) Expresion -> Expresion . PUNTO LENGTH
+    (61) Expresion -> Expresion . binary Expresion
+    (45) location -> Expresion . PUNTO ID
+    (46) location -> Expresion . CORCHIZ Expresion CORCHIZ
+    (50) method -> Expresion . PUNTO ID
+    (63) binary -> . MAS
+    (64) binary -> . MENOS
+    (65) binary -> . MULTI
+    (66) binary -> . DIVISION
+    (67) binary -> . MODULO
+    (68) binary -> . AND
+    (69) binary -> . OR
+    (70) binary -> . MENOR
+    (71) binary -> . MENORIG
+    (72) binary -> . MAYOR
+    (73) binary -> . MAYORIG
+    (74) binary -> . COMPARAR
+    (75) binary -> . DIFERCOMP
+
+  ! shift/reduce conflict for PUNTO resolved as shift
+  ! shift/reduce conflict for CORCHIZ resolved as shift
+  ! shift/reduce conflict for MAS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for MULTI resolved as shift
+  ! shift/reduce conflict for DIVISION resolved as shift
+  ! shift/reduce conflict for MODULO resolved as shift
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENORIG resolved as shift
+  ! shift/reduce conflict for MAYOR resolved as shift
+  ! shift/reduce conflict for MAYORIG resolved as shift
+  ! shift/reduce conflict for COMPARAR resolved as shift
+  ! shift/reduce conflict for DIFERCOMP resolved as shift
+    PARENDER        reduce using rule 61 (Expresion -> Expresion binary Expresion .)
+    COMA            reduce using rule 61 (Expresion -> Expresion binary Expresion .)
+    PUNTOCOMA       reduce using rule 61 (Expresion -> Expresion binary Expresion .)
+    CORCHDER        reduce using rule 61 (Expresion -> Expresion binary Expresion .)
+    PUNTO           shift and go to state 122
+    CORCHIZ         shift and go to state 98
+    MAS             shift and go to state 97
+    MENOS           shift and go to state 107
+    MULTI           shift and go to state 104
+    DIVISION        shift and go to state 101
+    MODULO          shift and go to state 99
+    AND             shift and go to state 111
+    OR              shift and go to state 105
+    MENOR           shift and go to state 102
+    MENORIG         shift and go to state 109
+    MAYOR           shift and go to state 103
+    MAYORIG         shift and go to state 100
+    COMPARAR        shift and go to state 108
+    DIFERCOMP       shift and go to state 110
+
+  ! PUNTO           [ reduce using rule 61 (Expresion -> Expresion binary Expresion .) ]
+  ! CORCHIZ         [ reduce using rule 61 (Expresion -> Expresion binary Expresion .) ]
+  ! MAS             [ reduce using rule 61 (Expresion -> Expresion binary Expresion .) ]
+  ! MENOS           [ reduce using rule 61 (Expresion -> Expresion binary Expresion .) ]
+  ! MULTI           [ reduce using rule 61 (Expresion -> Expresion binary Expresion .) ]
+  ! DIVISION        [ reduce using rule 61 (Expresion -> Expresion binary Expresion .) ]
+  ! MODULO          [ reduce using rule 61 (Expresion -> Expresion binary Expresion .) ]
+  ! AND             [ reduce using rule 61 (Expresion -> Expresion binary Expresion .) ]
+  ! OR              [ reduce using rule 61 (Expresion -> Expresion binary Expresion .) ]
+  ! MENOR           [ reduce using rule 61 (Expresion -> Expresion binary Expresion .) ]
+  ! MENORIG         [ reduce using rule 61 (Expresion -> Expresion binary Expresion .) ]
+  ! MAYOR           [ reduce using rule 61 (Expresion -> Expresion binary Expresion .) ]
+  ! MAYORIG         [ reduce using rule 61 (Expresion -> Expresion binary Expresion .) ]
+  ! COMPARAR        [ reduce using rule 61 (Expresion -> Expresion binary Expresion .) ]
+  ! DIFERCOMP       [ reduce using rule 61 (Expresion -> Expresion binary Expresion .) ]
+
+    binary                         shift and go to state 96
+
+state 133
+
+    (46) location -> Expresion CORCHIZ Expresion . CORCHIZ
+    (60) Expresion -> Expresion . PUNTO LENGTH
+    (61) Expresion -> Expresion . binary Expresion
+    (45) location -> Expresion . PUNTO ID
+    (46) location -> Expresion . CORCHIZ Expresion CORCHIZ
+    (50) method -> Expresion . PUNTO ID
+    (63) binary -> . MAS
+    (64) binary -> . MENOS
+    (65) binary -> . MULTI
+    (66) binary -> . DIVISION
+    (67) binary -> . MODULO
+    (68) binary -> . AND
+    (69) binary -> . OR
+    (70) binary -> . MENOR
+    (71) binary -> . MENORIG
+    (72) binary -> . MAYOR
+    (73) binary -> . MAYORIG
+    (74) binary -> . COMPARAR
+    (75) binary -> . DIFERCOMP
+
+    CORCHIZ         shift and go to state 148
+    PUNTO           shift and go to state 122
+    MAS             shift and go to state 97
+    MENOS           shift and go to state 107
+    MULTI           shift and go to state 104
+    DIVISION        shift and go to state 101
+    MODULO          shift and go to state 99
+    AND             shift and go to state 111
+    OR              shift and go to state 105
+    MENOR           shift and go to state 102
+    MENORIG         shift and go to state 109
+    MAYOR           shift and go to state 103
+    MAYORIG         shift and go to state 100
+    COMPARAR        shift and go to state 108
+    DIFERCOMP       shift and go to state 110
+
+    binary                         shift and go to state 96
+
+state 134
+
+    (60) Expresion -> Expresion PUNTO LENGTH .
+
+    PUNTO           reduce using rule 60 (Expresion -> Expresion PUNTO LENGTH .)
+    CORCHIZ         reduce using rule 60 (Expresion -> Expresion PUNTO LENGTH .)
+    MAS             reduce using rule 60 (Expresion -> Expresion PUNTO LENGTH .)
+    MENOS           reduce using rule 60 (Expresion -> Expresion PUNTO LENGTH .)
+    MULTI           reduce using rule 60 (Expresion -> Expresion PUNTO LENGTH .)
+    DIVISION        reduce using rule 60 (Expresion -> Expresion PUNTO LENGTH .)
+    MODULO          reduce using rule 60 (Expresion -> Expresion PUNTO LENGTH .)
+    AND             reduce using rule 60 (Expresion -> Expresion PUNTO LENGTH .)
+    OR              reduce using rule 60 (Expresion -> Expresion PUNTO LENGTH .)
+    MENOR           reduce using rule 60 (Expresion -> Expresion PUNTO LENGTH .)
+    MENORIG         reduce using rule 60 (Expresion -> Expresion PUNTO LENGTH .)
+    MAYOR           reduce using rule 60 (Expresion -> Expresion PUNTO LENGTH .)
+    MAYORIG         reduce using rule 60 (Expresion -> Expresion PUNTO LENGTH .)
+    COMPARAR        reduce using rule 60 (Expresion -> Expresion PUNTO LENGTH .)
+    DIFERCOMP       reduce using rule 60 (Expresion -> Expresion PUNTO LENGTH .)
+    PARENDER        reduce using rule 60 (Expresion -> Expresion PUNTO LENGTH .)
+    COMA            reduce using rule 60 (Expresion -> Expresion PUNTO LENGTH .)
+    PUNTOCOMA       reduce using rule 60 (Expresion -> Expresion PUNTO LENGTH .)
+    CORCHDER        reduce using rule 60 (Expresion -> Expresion PUNTO LENGTH .)
+
+
+state 135
+
+    (45) location -> Expresion PUNTO ID .
+    (50) method -> Expresion PUNTO ID .
+
+    PUNTO           reduce using rule 45 (location -> Expresion PUNTO ID .)
+    CORCHIZ         reduce using rule 45 (location -> Expresion PUNTO ID .)
+    COMA            reduce using rule 45 (location -> Expresion PUNTO ID .)
+    MAS             reduce using rule 45 (location -> Expresion PUNTO ID .)
+    MENOS           reduce using rule 45 (location -> Expresion PUNTO ID .)
+    MULTI           reduce using rule 45 (location -> Expresion PUNTO ID .)
+    DIVISION        reduce using rule 45 (location -> Expresion PUNTO ID .)
+    MODULO          reduce using rule 45 (location -> Expresion PUNTO ID .)
+    AND             reduce using rule 45 (location -> Expresion PUNTO ID .)
+    OR              reduce using rule 45 (location -> Expresion PUNTO ID .)
+    MENOR           reduce using rule 45 (location -> Expresion PUNTO ID .)
+    MENORIG         reduce using rule 45 (location -> Expresion PUNTO ID .)
+    MAYOR           reduce using rule 45 (location -> Expresion PUNTO ID .)
+    MAYORIG         reduce using rule 45 (location -> Expresion PUNTO ID .)
+    COMPARAR        reduce using rule 45 (location -> Expresion PUNTO ID .)
+    DIFERCOMP       reduce using rule 45 (location -> Expresion PUNTO ID .)
+    PARENDER        reduce using rule 45 (location -> Expresion PUNTO ID .)
+    PUNTOCOMA       reduce using rule 45 (location -> Expresion PUNTO ID .)
+    IGUAL           reduce using rule 45 (location -> Expresion PUNTO ID .)
+    CORCHDER        reduce using rule 45 (location -> Expresion PUNTO ID .)
+    PARENIZQ        reduce using rule 50 (method -> Expresion PUNTO ID .)
+
+
+state 136
+
+    (36) stmt -> IF PARENIZQ Expresion . PARENDER stmt ELSE stmt
+    (37) stmt -> IF PARENIZQ Expresion . PARENDER stmt
+    (60) Expresion -> Expresion . PUNTO LENGTH
+    (61) Expresion -> Expresion . binary Expresion
+    (45) location -> Expresion . PUNTO ID
+    (46) location -> Expresion . CORCHIZ Expresion CORCHIZ
+    (50) method -> Expresion . PUNTO ID
+    (63) binary -> . MAS
+    (64) binary -> . MENOS
+    (65) binary -> . MULTI
+    (66) binary -> . DIVISION
+    (67) binary -> . MODULO
+    (68) binary -> . AND
+    (69) binary -> . OR
+    (70) binary -> . MENOR
+    (71) binary -> . MENORIG
+    (72) binary -> . MAYOR
+    (73) binary -> . MAYORIG
+    (74) binary -> . COMPARAR
+    (75) binary -> . DIFERCOMP
+
+    PARENDER        shift and go to state 149
+    PUNTO           shift and go to state 122
+    CORCHIZ         shift and go to state 98
+    MAS             shift and go to state 97
+    MENOS           shift and go to state 107
+    MULTI           shift and go to state 104
+    DIVISION        shift and go to state 101
+    MODULO          shift and go to state 99
+    AND             shift and go to state 111
+    OR              shift and go to state 105
+    MENOR           shift and go to state 102
+    MENORIG         shift and go to state 109
+    MAYOR           shift and go to state 103
+    MAYORIG         shift and go to state 100
+    COMPARAR        shift and go to state 108
+    DIFERCOMP       shift and go to state 110
+
+    binary                         shift and go to state 96
+
+state 137
+
+    (29) IdAsignExp -> vacio .
+
+    PUNTOCOMA       reduce using rule 29 (IdAsignExp -> vacio .)
+
+
+state 138
+
+    (25) Declaracion_Variable -> Type ID IgualExp IdAsignExp . PUNTOCOMA
+
+    PUNTOCOMA       shift and go to state 150
+
+
+state 139
+
+    (28) IdAsignExp -> COMA . ID IgualExp IdAsignExp
+
+    ID              shift and go to state 151
+
+
+state 140
+
+    (26) IgualExp -> IGUAL Expresion .
+    (60) Expresion -> Expresion . PUNTO LENGTH
+    (61) Expresion -> Expresion . binary Expresion
+    (45) location -> Expresion . PUNTO ID
+    (46) location -> Expresion . CORCHIZ Expresion CORCHIZ
+    (50) method -> Expresion . PUNTO ID
+    (63) binary -> . MAS
+    (64) binary -> . MENOS
+    (65) binary -> . MULTI
+    (66) binary -> . DIVISION
+    (67) binary -> . MODULO
+    (68) binary -> . AND
+    (69) binary -> . OR
+    (70) binary -> . MENOR
+    (71) binary -> . MENORIG
+    (72) binary -> . MAYOR
+    (73) binary -> . MAYORIG
+    (74) binary -> . COMPARAR
+    (75) binary -> . DIFERCOMP
+
+    COMA            reduce using rule 26 (IgualExp -> IGUAL Expresion .)
+    PUNTOCOMA       reduce using rule 26 (IgualExp -> IGUAL Expresion .)
+    PUNTO           shift and go to state 122
+    CORCHIZ         shift and go to state 98
+    MAS             shift and go to state 97
+    MENOS           shift and go to state 107
+    MULTI           shift and go to state 104
+    DIVISION        shift and go to state 101
+    MODULO          shift and go to state 99
+    AND             shift and go to state 111
+    OR              shift and go to state 105
+    MENOR           shift and go to state 102
+    MENORIG         shift and go to state 109
+    MAYOR           shift and go to state 103
+    MAYORIG         shift and go to state 100
+    COMPARAR        shift and go to state 108
+    DIFERCOMP       shift and go to state 110
+
+    binary                         shift and go to state 96
+
+state 141
+
+    (38) stmt -> WHILE PARENIZQ Expresion PARENDER . stmt
+    (32) stmt -> . assign PUNTOCOMA
+    (33) stmt -> . call PUNTOCOMA
+    (34) stmt -> . RETURN Expresion PUNTOCOMA
+    (35) stmt -> . RETURN PUNTOCOMA
+    (36) stmt -> . IF PARENIZQ Expresion PARENDER stmt ELSE stmt
+    (37) stmt -> . IF PARENIZQ Expresion PARENDER stmt
+    (38) stmt -> . WHILE PARENIZQ Expresion PARENDER stmt
+    (39) stmt -> . BREAK PUNTOCOMA
+    (40) stmt -> . CONTINUE PUNTOCOMA
+    (41) stmt -> . block
+    (42) assign -> . location IGUAL Expresion
+    (43) assign -> . vacio
+    (47) call -> . method PARENIZQ actuals PARENDER
+    (48) call -> . method PARENIZQ PARENDER
+    (22) block -> . LLAVEIZ lsVarDecl lstmtDecl LLAVEDER
+    (44) location -> . ID
+    (45) location -> . Expresion PUNTO ID
+    (46) location -> . Expresion CORCHIZ Expresion CORCHIZ
+    (85) vacio -> .
+    (49) method -> . ID
+    (50) method -> . Expresion PUNTO ID
+    (55) Expresion -> . location
+    (56) Expresion -> . call
+    (57) Expresion -> . THIS
+    (58) Expresion -> . NEW ID PARENIZQ PARENDER
+    (59) Expresion -> . NEW Type CORCHIZ Expresion CORCHDER
+    (60) Expresion -> . Expresion PUNTO LENGTH
+    (61) Expresion -> . Expresion binary Expresion
+    (62) Expresion -> . Unary Expresion
+    (78) Expresion -> . Literal
+    (84) Expresion -> . PARENIZQ Expresion PARENDER
+    (76) Unary -> . MENOS
+    (77) Unary -> . DIFER
+    (79) Literal -> . TRUE
+    (80) Literal -> . CADENA
+    (81) Literal -> . FALSE
+    (82) Literal -> . NULL
+    (83) Literal -> . ENTNUM
+
+    RETURN          shift and go to state 55
+    IF              shift and go to state 73
+    WHILE           shift and go to state 57
+    BREAK           shift and go to state 78
+    CONTINUE        shift and go to state 79
+    LLAVEIZ         shift and go to state 45
+    ID              shift and go to state 72
+    PUNTOCOMA       reduce using rule 85 (vacio -> .)
+    THIS            shift and go to state 75
+    NEW             shift and go to state 59
+    PARENIZQ        shift and go to state 67
+    MENOS           shift and go to state 63
+    DIFER           shift and go to state 56
+    TRUE            shift and go to state 61
+    CADENA          shift and go to state 62
+    FALSE           shift and go to state 74
+    NULL            shift and go to state 60
+    ENTNUM          shift and go to state 71
+
+    Expresion                      shift and go to state 68
+    Literal                        shift and go to state 76
+    stmt                           shift and go to state 152
+    vacio                          shift and go to state 153
+    Unary                          shift and go to state 58
+    method                         shift and go to state 66
+    call                           shift and go to state 64
+    location                       shift and go to state 65
+    assign                         shift and go to state 80
+    block                          shift and go to state 81
+
+state 142
+
+    (59) Expresion -> NEW Type CORCHIZ Expresion . CORCHDER
+    (60) Expresion -> Expresion . PUNTO LENGTH
+    (61) Expresion -> Expresion . binary Expresion
+    (45) location -> Expresion . PUNTO ID
+    (46) location -> Expresion . CORCHIZ Expresion CORCHIZ
+    (50) method -> Expresion . PUNTO ID
+    (63) binary -> . MAS
+    (64) binary -> . MENOS
+    (65) binary -> . MULTI
+    (66) binary -> . DIVISION
+    (67) binary -> . MODULO
+    (68) binary -> . AND
+    (69) binary -> . OR
+    (70) binary -> . MENOR
+    (71) binary -> . MENORIG
+    (72) binary -> . MAYOR
+    (73) binary -> . MAYORIG
+    (74) binary -> . COMPARAR
+    (75) binary -> . DIFERCOMP
+
+    CORCHDER        shift and go to state 154
+    PUNTO           shift and go to state 122
+    CORCHIZ         shift and go to state 98
+    MAS             shift and go to state 97
+    MENOS           shift and go to state 107
+    MULTI           shift and go to state 104
+    DIVISION        shift and go to state 101
+    MODULO          shift and go to state 99
+    AND             shift and go to state 111
+    OR              shift and go to state 105
+    MENOR           shift and go to state 102
+    MENORIG         shift and go to state 109
+    MAYOR           shift and go to state 103
+    MAYORIG         shift and go to state 100
+    COMPARAR        shift and go to state 108
+    DIFERCOMP       shift and go to state 110
+
+    binary                         shift and go to state 96
+
+state 143
+
+    (58) Expresion -> NEW ID PARENIZQ PARENDER .
+
+    PUNTO           reduce using rule 58 (Expresion -> NEW ID PARENIZQ PARENDER .)
+    CORCHIZ         reduce using rule 58 (Expresion -> NEW ID PARENIZQ PARENDER .)
+    MAS             reduce using rule 58 (Expresion -> NEW ID PARENIZQ PARENDER .)
+    MENOS           reduce using rule 58 (Expresion -> NEW ID PARENIZQ PARENDER .)
+    MULTI           reduce using rule 58 (Expresion -> NEW ID PARENIZQ PARENDER .)
+    DIVISION        reduce using rule 58 (Expresion -> NEW ID PARENIZQ PARENDER .)
+    MODULO          reduce using rule 58 (Expresion -> NEW ID PARENIZQ PARENDER .)
+    AND             reduce using rule 58 (Expresion -> NEW ID PARENIZQ PARENDER .)
+    OR              reduce using rule 58 (Expresion -> NEW ID PARENIZQ PARENDER .)
+    MENOR           reduce using rule 58 (Expresion -> NEW ID PARENIZQ PARENDER .)
+    MENORIG         reduce using rule 58 (Expresion -> NEW ID PARENIZQ PARENDER .)
+    MAYOR           reduce using rule 58 (Expresion -> NEW ID PARENIZQ PARENDER .)
+    MAYORIG         reduce using rule 58 (Expresion -> NEW ID PARENIZQ PARENDER .)
+    COMPARAR        reduce using rule 58 (Expresion -> NEW ID PARENIZQ PARENDER .)
+    DIFERCOMP       reduce using rule 58 (Expresion -> NEW ID PARENIZQ PARENDER .)
+    PARENDER        reduce using rule 58 (Expresion -> NEW ID PARENIZQ PARENDER .)
+    COMA            reduce using rule 58 (Expresion -> NEW ID PARENIZQ PARENDER .)
+    PUNTOCOMA       reduce using rule 58 (Expresion -> NEW ID PARENIZQ PARENDER .)
+    CORCHDER        reduce using rule 58 (Expresion -> NEW ID PARENIZQ PARENDER .)
+
+
+state 144
+
+    (51) actuals -> Expresion LsActualesExp .
+
+    PARENDER        reduce using rule 51 (actuals -> Expresion LsActualesExp .)
+
+
+state 145
+
+    (53) LsActualesExp -> COMA . Expresion LsActualesExp
+    (55) Expresion -> . location
+    (56) Expresion -> . call
+    (57) Expresion -> . THIS
+    (58) Expresion -> . NEW ID PARENIZQ PARENDER
+    (59) Expresion -> . NEW Type CORCHIZ Expresion CORCHDER
+    (60) Expresion -> . Expresion PUNTO LENGTH
+    (61) Expresion -> . Expresion binary Expresion
+    (62) Expresion -> . Unary Expresion
+    (78) Expresion -> . Literal
+    (84) Expresion -> . PARENIZQ Expresion PARENDER
+    (44) location -> . ID
+    (45) location -> . Expresion PUNTO ID
+    (46) location -> . Expresion CORCHIZ Expresion CORCHIZ
+    (47) call -> . method PARENIZQ actuals PARENDER
+    (48) call -> . method PARENIZQ PARENDER
+    (76) Unary -> . MENOS
+    (77) Unary -> . DIFER
+    (79) Literal -> . TRUE
+    (80) Literal -> . CADENA
+    (81) Literal -> . FALSE
+    (82) Literal -> . NULL
+    (83) Literal -> . ENTNUM
+    (49) method -> . ID
+    (50) method -> . Expresion PUNTO ID
+
+    THIS            shift and go to state 75
+    NEW             shift and go to state 59
+    PARENIZQ        shift and go to state 67
+    ID              shift and go to state 72
+    MENOS           shift and go to state 63
+    DIFER           shift and go to state 56
+    TRUE            shift and go to state 61
+    CADENA          shift and go to state 62
+    FALSE           shift and go to state 74
+    NULL            shift and go to state 60
+    ENTNUM          shift and go to state 71
+
+    Expresion                      shift and go to state 155
+    Unary                          shift and go to state 58
+    Literal                        shift and go to state 76
+    call                           shift and go to state 85
+    location                       shift and go to state 86
+    method                         shift and go to state 66
+
+state 146
+
+    (54) LsActualesExp -> vacio .
+
+    PARENDER        reduce using rule 54 (LsActualesExp -> vacio .)
+
+
+state 147
+
+    (47) call -> method PARENIZQ actuals PARENDER .
+
+    PUNTO           reduce using rule 47 (call -> method PARENIZQ actuals PARENDER .)
+    CORCHIZ         reduce using rule 47 (call -> method PARENIZQ actuals PARENDER .)
+    MAS             reduce using rule 47 (call -> method PARENIZQ actuals PARENDER .)
+    MENOS           reduce using rule 47 (call -> method PARENIZQ actuals PARENDER .)
+    MULTI           reduce using rule 47 (call -> method PARENIZQ actuals PARENDER .)
+    DIVISION        reduce using rule 47 (call -> method PARENIZQ actuals PARENDER .)
+    MODULO          reduce using rule 47 (call -> method PARENIZQ actuals PARENDER .)
+    AND             reduce using rule 47 (call -> method PARENIZQ actuals PARENDER .)
+    OR              reduce using rule 47 (call -> method PARENIZQ actuals PARENDER .)
+    MENOR           reduce using rule 47 (call -> method PARENIZQ actuals PARENDER .)
+    MENORIG         reduce using rule 47 (call -> method PARENIZQ actuals PARENDER .)
+    MAYOR           reduce using rule 47 (call -> method PARENIZQ actuals PARENDER .)
+    MAYORIG         reduce using rule 47 (call -> method PARENIZQ actuals PARENDER .)
+    COMPARAR        reduce using rule 47 (call -> method PARENIZQ actuals PARENDER .)
+    DIFERCOMP       reduce using rule 47 (call -> method PARENIZQ actuals PARENDER .)
+    PUNTOCOMA       reduce using rule 47 (call -> method PARENIZQ actuals PARENDER .)
+    PARENDER        reduce using rule 47 (call -> method PARENIZQ actuals PARENDER .)
+    COMA            reduce using rule 47 (call -> method PARENIZQ actuals PARENDER .)
+    CORCHDER        reduce using rule 47 (call -> method PARENIZQ actuals PARENDER .)
+
+
+state 148
+
+    (46) location -> Expresion CORCHIZ Expresion CORCHIZ .
+    (46) location -> Expresion CORCHIZ . Expresion CORCHIZ
+    (55) Expresion -> . location
+    (56) Expresion -> . call
+    (57) Expresion -> . THIS
+    (58) Expresion -> . NEW ID PARENIZQ PARENDER
+    (59) Expresion -> . NEW Type CORCHIZ Expresion CORCHDER
+    (60) Expresion -> . Expresion PUNTO LENGTH
+    (61) Expresion -> . Expresion binary Expresion
+    (62) Expresion -> . Unary Expresion
+    (78) Expresion -> . Literal
+    (84) Expresion -> . PARENIZQ Expresion PARENDER
+    (44) location -> . ID
+    (45) location -> . Expresion PUNTO ID
+    (46) location -> . Expresion CORCHIZ Expresion CORCHIZ
+    (47) call -> . method PARENIZQ actuals PARENDER
+    (48) call -> . method PARENIZQ PARENDER
+    (76) Unary -> . MENOS
+    (77) Unary -> . DIFER
+    (79) Literal -> . TRUE
+    (80) Literal -> . CADENA
+    (81) Literal -> . FALSE
+    (82) Literal -> . NULL
+    (83) Literal -> . ENTNUM
+    (49) method -> . ID
+    (50) method -> . Expresion PUNTO ID
+
+  ! shift/reduce conflict for MENOS resolved as shift
+    PUNTO           reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .)
+    CORCHIZ         reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .)
+    COMA            reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .)
+    MAS             reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .)
+    MULTI           reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .)
+    DIVISION        reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .)
+    MODULO          reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .)
+    AND             reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .)
+    OR              reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .)
+    MENOR           reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .)
+    MENORIG         reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .)
+    MAYOR           reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .)
+    MAYORIG         reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .)
+    COMPARAR        reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .)
+    DIFERCOMP       reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .)
+    PARENDER        reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .)
+    PUNTOCOMA       reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .)
+    IGUAL           reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .)
+    CORCHDER        reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .)
+    THIS            shift and go to state 75
+    NEW             shift and go to state 59
+    PARENIZQ        shift and go to state 67
+    ID              shift and go to state 72
+    MENOS           shift and go to state 63
+    DIFER           shift and go to state 56
+    TRUE            shift and go to state 61
+    CADENA          shift and go to state 62
+    FALSE           shift and go to state 74
+    NULL            shift and go to state 60
+    ENTNUM          shift and go to state 71
+
+  ! MENOS           [ reduce using rule 46 (location -> Expresion CORCHIZ Expresion CORCHIZ .) ]
+
+    Expresion                      shift and go to state 133
+    Unary                          shift and go to state 58
+    Literal                        shift and go to state 76
+    call                           shift and go to state 85
+    location                       shift and go to state 86
+    method                         shift and go to state 66
+
+state 149
+
+    (36) stmt -> IF PARENIZQ Expresion PARENDER . stmt ELSE stmt
+    (37) stmt -> IF PARENIZQ Expresion PARENDER . stmt
+    (32) stmt -> . assign PUNTOCOMA
+    (33) stmt -> . call PUNTOCOMA
+    (34) stmt -> . RETURN Expresion PUNTOCOMA
+    (35) stmt -> . RETURN PUNTOCOMA
+    (36) stmt -> . IF PARENIZQ Expresion PARENDER stmt ELSE stmt
+    (37) stmt -> . IF PARENIZQ Expresion PARENDER stmt
+    (38) stmt -> . WHILE PARENIZQ Expresion PARENDER stmt
+    (39) stmt -> . BREAK PUNTOCOMA
+    (40) stmt -> . CONTINUE PUNTOCOMA
+    (41) stmt -> . block
+    (42) assign -> . location IGUAL Expresion
+    (43) assign -> . vacio
+    (47) call -> . method PARENIZQ actuals PARENDER
+    (48) call -> . method PARENIZQ PARENDER
+    (22) block -> . LLAVEIZ lsVarDecl lstmtDecl LLAVEDER
+    (44) location -> . ID
+    (45) location -> . Expresion PUNTO ID
+    (46) location -> . Expresion CORCHIZ Expresion CORCHIZ
+    (85) vacio -> .
+    (49) method -> . ID
+    (50) method -> . Expresion PUNTO ID
+    (55) Expresion -> . location
+    (56) Expresion -> . call
+    (57) Expresion -> . THIS
+    (58) Expresion -> . NEW ID PARENIZQ PARENDER
+    (59) Expresion -> . NEW Type CORCHIZ Expresion CORCHDER
+    (60) Expresion -> . Expresion PUNTO LENGTH
+    (61) Expresion -> . Expresion binary Expresion
+    (62) Expresion -> . Unary Expresion
+    (78) Expresion -> . Literal
+    (84) Expresion -> . PARENIZQ Expresion PARENDER
+    (76) Unary -> . MENOS
+    (77) Unary -> . DIFER
+    (79) Literal -> . TRUE
+    (80) Literal -> . CADENA
+    (81) Literal -> . FALSE
+    (82) Literal -> . NULL
+    (83) Literal -> . ENTNUM
+
+    RETURN          shift and go to state 55
+    IF              shift and go to state 73
+    WHILE           shift and go to state 57
+    BREAK           shift and go to state 78
+    CONTINUE        shift and go to state 79
+    LLAVEIZ         shift and go to state 45
+    ID              shift and go to state 72
+    PUNTOCOMA       reduce using rule 85 (vacio -> .)
+    THIS            shift and go to state 75
+    NEW             shift and go to state 59
+    PARENIZQ        shift and go to state 67
+    MENOS           shift and go to state 63
+    DIFER           shift and go to state 56
+    TRUE            shift and go to state 61
+    CADENA          shift and go to state 62
+    FALSE           shift and go to state 74
+    NULL            shift and go to state 60
+    ENTNUM          shift and go to state 71
+
+    Expresion                      shift and go to state 68
+    Literal                        shift and go to state 76
+    stmt                           shift and go to state 156
+    vacio                          shift and go to state 153
+    Unary                          shift and go to state 58
+    method                         shift and go to state 66
+    call                           shift and go to state 64
+    location                       shift and go to state 65
+    assign                         shift and go to state 80
+    block                          shift and go to state 81
+
+state 150
+
+    (25) Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .
+
+    INT             reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    BOOLEAN         reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    STRING          reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    RETURN          reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    IF              reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    WHILE           reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    BREAK           reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    CONTINUE        reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    LLAVEIZ         reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    ID              reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    THIS            reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    NEW             reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    PARENIZQ        reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    MENOS           reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    DIFER           reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    TRUE            reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    CADENA          reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    FALSE           reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    NULL            reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    ENTNUM          reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    LLAVEDER        reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+    PUNTOCOMA       reduce using rule 25 (Declaracion_Variable -> Type ID IgualExp IdAsignExp PUNTOCOMA .)
+
+
+state 151
+
+    (28) IdAsignExp -> COMA ID . IgualExp IdAsignExp
+    (26) IgualExp -> . IGUAL Expresion
+    (27) IgualExp -> . vacio
+    (85) vacio -> .
+
+    IGUAL           shift and go to state 119
+    COMA            reduce using rule 85 (vacio -> .)
+    PUNTOCOMA       reduce using rule 85 (vacio -> .)
+
+    IgualExp                       shift and go to state 157
+    vacio                          shift and go to state 120
+
+state 152
+
+    (38) stmt -> WHILE PARENIZQ Expresion PARENDER stmt .
+
+    RETURN          reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+    IF              reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+    WHILE           reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+    BREAK           reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+    CONTINUE        reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+    LLAVEIZ         reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+    ID              reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+    THIS            reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+    NEW             reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+    PARENIZQ        reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+    MENOS           reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+    DIFER           reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+    TRUE            reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+    CADENA          reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+    FALSE           reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+    NULL            reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+    ENTNUM          reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+    PUNTOCOMA       reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+    LLAVEDER        reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+    ELSE            reduce using rule 38 (stmt -> WHILE PARENIZQ Expresion PARENDER stmt .)
+
+
+state 153
+
+    (43) assign -> vacio .
+
+    PUNTOCOMA       reduce using rule 43 (assign -> vacio .)
+
+
+state 154
+
+    (59) Expresion -> NEW Type CORCHIZ Expresion CORCHDER .
+
+    PUNTO           reduce using rule 59 (Expresion -> NEW Type CORCHIZ Expresion CORCHDER .)
+    CORCHIZ         reduce using rule 59 (Expresion -> NEW Type CORCHIZ Expresion CORCHDER .)
+    MAS             reduce using rule 59 (Expresion -> NEW Type CORCHIZ Expresion CORCHDER .)
+    MENOS           reduce using rule 59 (Expresion -> NEW Type CORCHIZ Expresion CORCHDER .)
+    MULTI           reduce using rule 59 (Expresion -> NEW Type CORCHIZ Expresion CORCHDER .)
+    DIVISION        reduce using rule 59 (Expresion -> NEW Type CORCHIZ Expresion CORCHDER .)
+    MODULO          reduce using rule 59 (Expresion -> NEW Type CORCHIZ Expresion CORCHDER .)
+    AND             reduce using rule 59 (Expresion -> NEW Type CORCHIZ Expresion CORCHDER .)
+    OR              reduce using rule 59 (Expresion -> NEW Type CORCHIZ Expresion CORCHDER .)
+    MENOR           reduce using rule 59 (Expresion -> NEW Type CORCHIZ Expresion CORCHDER .)
+    MENORIG         reduce using rule 59 (Expresion -> NEW Type CORCHIZ Expresion CORCHDER .)
+    MAYOR           reduce using rule 59 (Expresion -> NEW Type CORCHIZ Expresion CORCHDER .)
+    MAYORIG         reduce using rule 59 (Expresion -> NEW Type CORCHIZ Expresion CORCHDER .)
+    COMPARAR        reduce using rule 59 (Expresion -> NEW Type CORCHIZ Expresion CORCHDER .)
+    DIFERCOMP       reduce using rule 59 (Expresion -> NEW Type CORCHIZ Expresion CORCHDER .)
+    PARENDER        reduce using rule 59 (Expresion -> NEW Type CORCHIZ Expresion CORCHDER .)
+    COMA            reduce using rule 59 (Expresion -> NEW Type CORCHIZ Expresion CORCHDER .)
+    PUNTOCOMA       reduce using rule 59 (Expresion -> NEW Type CORCHIZ Expresion CORCHDER .)
+    CORCHDER        reduce using rule 59 (Expresion -> NEW Type CORCHIZ Expresion CORCHDER .)
+
+
+state 155
+
+    (53) LsActualesExp -> COMA Expresion . LsActualesExp
+    (60) Expresion -> Expresion . PUNTO LENGTH
+    (61) Expresion -> Expresion . binary Expresion
+    (45) location -> Expresion . PUNTO ID
+    (46) location -> Expresion . CORCHIZ Expresion CORCHIZ
+    (50) method -> Expresion . PUNTO ID
+    (53) LsActualesExp -> . COMA Expresion LsActualesExp
+    (54) LsActualesExp -> . vacio
+    (63) binary -> . MAS
+    (64) binary -> . MENOS
+    (65) binary -> . MULTI
+    (66) binary -> . DIVISION
+    (67) binary -> . MODULO
+    (68) binary -> . AND
+    (69) binary -> . OR
+    (70) binary -> . MENOR
+    (71) binary -> . MENORIG
+    (72) binary -> . MAYOR
+    (73) binary -> . MAYORIG
+    (74) binary -> . COMPARAR
+    (75) binary -> . DIFERCOMP
+    (85) vacio -> .
+
+    PUNTO           shift and go to state 122
+    CORCHIZ         shift and go to state 98
+    COMA            shift and go to state 145
+    MAS             shift and go to state 97
+    MENOS           shift and go to state 107
+    MULTI           shift and go to state 104
+    DIVISION        shift and go to state 101
+    MODULO          shift and go to state 99
+    AND             shift and go to state 111
+    OR              shift and go to state 105
+    MENOR           shift and go to state 102
+    MENORIG         shift and go to state 109
+    MAYOR           shift and go to state 103
+    MAYORIG         shift and go to state 100
+    COMPARAR        shift and go to state 108
+    DIFERCOMP       shift and go to state 110
+    PARENDER        reduce using rule 85 (vacio -> .)
+
+    binary                         shift and go to state 96
+    vacio                          shift and go to state 146
+    LsActualesExp                  shift and go to state 158
+
+state 156
+
+    (36) stmt -> IF PARENIZQ Expresion PARENDER stmt . ELSE stmt
+    (37) stmt -> IF PARENIZQ Expresion PARENDER stmt .
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    ELSE            shift and go to state 159
+    RETURN          reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .)
+    IF              reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .)
+    WHILE           reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .)
+    BREAK           reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .)
+    CONTINUE        reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .)
+    LLAVEIZ         reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .)
+    ID              reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .)
+    THIS            reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .)
+    NEW             reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .)
+    PARENIZQ        reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .)
+    MENOS           reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .)
+    DIFER           reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .)
+    TRUE            reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .)
+    CADENA          reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .)
+    FALSE           reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .)
+    NULL            reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .)
+    ENTNUM          reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .)
+    PUNTOCOMA       reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .)
+    LLAVEDER        reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .)
+
+  ! ELSE            [ reduce using rule 37 (stmt -> IF PARENIZQ Expresion PARENDER stmt .) ]
+
+
+state 157
+
+    (28) IdAsignExp -> COMA ID IgualExp . IdAsignExp
+    (28) IdAsignExp -> . COMA ID IgualExp IdAsignExp
+    (29) IdAsignExp -> . vacio
+    (85) vacio -> .
+
+    COMA            shift and go to state 139
+    PUNTOCOMA       reduce using rule 85 (vacio -> .)
+
+    IdAsignExp                     shift and go to state 160
+    vacio                          shift and go to state 137
+
+state 158
+
+    (53) LsActualesExp -> COMA Expresion LsActualesExp .
+
+    PARENDER        reduce using rule 53 (LsActualesExp -> COMA Expresion LsActualesExp .)
+
+
+state 159
+
+    (36) stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE . stmt
+    (32) stmt -> . assign PUNTOCOMA
+    (33) stmt -> . call PUNTOCOMA
+    (34) stmt -> . RETURN Expresion PUNTOCOMA
+    (35) stmt -> . RETURN PUNTOCOMA
+    (36) stmt -> . IF PARENIZQ Expresion PARENDER stmt ELSE stmt
+    (37) stmt -> . IF PARENIZQ Expresion PARENDER stmt
+    (38) stmt -> . WHILE PARENIZQ Expresion PARENDER stmt
+    (39) stmt -> . BREAK PUNTOCOMA
+    (40) stmt -> . CONTINUE PUNTOCOMA
+    (41) stmt -> . block
+    (42) assign -> . location IGUAL Expresion
+    (43) assign -> . vacio
+    (47) call -> . method PARENIZQ actuals PARENDER
+    (48) call -> . method PARENIZQ PARENDER
+    (22) block -> . LLAVEIZ lsVarDecl lstmtDecl LLAVEDER
+    (44) location -> . ID
+    (45) location -> . Expresion PUNTO ID
+    (46) location -> . Expresion CORCHIZ Expresion CORCHIZ
+    (85) vacio -> .
+    (49) method -> . ID
+    (50) method -> . Expresion PUNTO ID
+    (55) Expresion -> . location
+    (56) Expresion -> . call
+    (57) Expresion -> . THIS
+    (58) Expresion -> . NEW ID PARENIZQ PARENDER
+    (59) Expresion -> . NEW Type CORCHIZ Expresion CORCHDER
+    (60) Expresion -> . Expresion PUNTO LENGTH
+    (61) Expresion -> . Expresion binary Expresion
+    (62) Expresion -> . Unary Expresion
+    (78) Expresion -> . Literal
+    (84) Expresion -> . PARENIZQ Expresion PARENDER
+    (76) Unary -> . MENOS
+    (77) Unary -> . DIFER
+    (79) Literal -> . TRUE
+    (80) Literal -> . CADENA
+    (81) Literal -> . FALSE
+    (82) Literal -> . NULL
+    (83) Literal -> . ENTNUM
+
+    RETURN          shift and go to state 55
+    IF              shift and go to state 73
+    WHILE           shift and go to state 57
+    BREAK           shift and go to state 78
+    CONTINUE        shift and go to state 79
+    LLAVEIZ         shift and go to state 45
+    ID              shift and go to state 72
+    PUNTOCOMA       reduce using rule 85 (vacio -> .)
+    THIS            shift and go to state 75
+    NEW             shift and go to state 59
+    PARENIZQ        shift and go to state 67
+    MENOS           shift and go to state 63
+    DIFER           shift and go to state 56
+    TRUE            shift and go to state 61
+    CADENA          shift and go to state 62
+    FALSE           shift and go to state 74
+    NULL            shift and go to state 60
+    ENTNUM          shift and go to state 71
+
+    Expresion                      shift and go to state 68
+    Literal                        shift and go to state 76
+    stmt                           shift and go to state 161
+    vacio                          shift and go to state 153
+    Unary                          shift and go to state 58
+    method                         shift and go to state 66
+    call                           shift and go to state 64
+    location                       shift and go to state 65
+    assign                         shift and go to state 80
+    block                          shift and go to state 81
+
+state 160
+
+    (28) IdAsignExp -> COMA ID IgualExp IdAsignExp .
+
+    PUNTOCOMA       reduce using rule 28 (IdAsignExp -> COMA ID IgualExp IdAsignExp .)
+
+
+state 161
+
+    (36) stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .
+
+    RETURN          reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+    IF              reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+    WHILE           reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+    BREAK           reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+    CONTINUE        reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+    LLAVEIZ         reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+    ID              reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+    THIS            reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+    NEW             reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+    PARENIZQ        reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+    MENOS           reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+    DIFER           reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+    TRUE            reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+    CADENA          reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+    FALSE           reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+    NULL            reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+    ENTNUM          reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+    PUNTOCOMA       reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+    LLAVEDER        reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+    ELSE            reduce using rule 36 (stmt -> IF PARENIZQ Expresion PARENDER stmt ELSE stmt .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PUNTO in state 89 resolved as shift
+WARNING: shift/reduce conflict for CORCHIZ in state 89 resolved as shift
+WARNING: shift/reduce conflict for MAS in state 89 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 89 resolved as shift
+WARNING: shift/reduce conflict for MULTI in state 89 resolved as shift
+WARNING: shift/reduce conflict for DIVISION in state 89 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 89 resolved as shift
+WARNING: shift/reduce conflict for AND in state 89 resolved as shift
+WARNING: shift/reduce conflict for OR in state 89 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 89 resolved as shift
+WARNING: shift/reduce conflict for MENORIG in state 89 resolved as shift
+WARNING: shift/reduce conflict for MAYOR in state 89 resolved as shift
+WARNING: shift/reduce conflict for MAYORIG in state 89 resolved as shift
+WARNING: shift/reduce conflict for COMPARAR in state 89 resolved as shift
+WARNING: shift/reduce conflict for DIFERCOMP in state 89 resolved as shift
+WARNING: shift/reduce conflict for PARENDER in state 94 resolved as shift
+WARNING: shift/reduce conflict for PUNTO in state 132 resolved as shift
+WARNING: shift/reduce conflict for CORCHIZ in state 132 resolved as shift
+WARNING: shift/reduce conflict for MAS in state 132 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 132 resolved as shift
+WARNING: shift/reduce conflict for MULTI in state 132 resolved as shift
+WARNING: shift/reduce conflict for DIVISION in state 132 resolved as shift
+WARNING: shift/reduce conflict for MODULO in state 132 resolved as shift
+WARNING: shift/reduce conflict for AND in state 132 resolved as shift
+WARNING: shift/reduce conflict for OR in state 132 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 132 resolved as shift
+WARNING: shift/reduce conflict for MENORIG in state 132 resolved as shift
+WARNING: shift/reduce conflict for MAYOR in state 132 resolved as shift
+WARNING: shift/reduce conflict for MAYORIG in state 132 resolved as shift
+WARNING: shift/reduce conflict for COMPARAR in state 132 resolved as shift
+WARNING: shift/reduce conflict for DIFERCOMP in state 132 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 148 resolved as shift
+WARNING: shift/reduce conflict for ELSE in state 156 resolved as shift

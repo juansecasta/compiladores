@@ -1,0 +1,12 @@
+class ClaseA {
+  
+	string a;
+	int b;
+
+	void Metodo_A (){
+		int x;
+		float z = -1;
+		string y, w = "Hola Mundo";
+	}
+
+}
