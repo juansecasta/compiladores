@@ -333,8 +333,8 @@ def p_error(p):
     
 yacc.yacc(method='LALR')
 
-#s = open("C:\\Users\\sebas\\Desktop\\final Compiladores\\Analizador Sintactico\\test\\prueba_decVar.MJ").read()
-s = open("C:\\Users\\sebas\\Desktop\\final Compiladores\\Analizador Sintactico\\test\\ejemplo1.MJ").read()
+s = open("C:\\Users\\sebas\\Desktop\\final Compiladores\\Analizador Sintactico\\test\\prueba_decVar.MJ").read()
+#s = open("C:\\Users\\sebas\\Desktop\\final Compiladores\\Analizador Sintactico\\test\\ejemplo1.MJ").read()
 #s = open("C:\\Users\\sebas\\Desktop\\final Compiladores\\Analizador Sintactico\\test\\pruebaStmt.MJ").read()
 #s = open("C:\\Users\\sebas\\Desktop\\final Compiladores\\Analizador Sintactico\\test\\hola.mj").read()
 
