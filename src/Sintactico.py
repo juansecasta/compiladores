@@ -338,6 +338,8 @@ yacc.yacc(method='LALR')
 s = open("C:\\Users\\sebas\\Desktop\\final Compiladores\\Analizador Sintactico\\test\\pruebaStmt.MJ").read()
 #s = open("C:\\Users\\sebas\\Desktop\\final Compiladores\\Analizador Sintactico\\test\\hola.mj").read()
 
+#Juan Sebastian Castaneda Ramirez
+
 raiz = yacc.parse(s)
 #raiz.preOrden()
 print (raiz.traducir())
